@@ -1,25 +1,41 @@
 import json
 
-from django.shortcuts import redirect
+from django.contrib.auth.decorators import login_required
+from django.core.serializers import serialize
+from django.http import HttpRequest, JsonResponse
 from django.urls import reverse
+from django.utils.decorators import method_decorator
+from django.views.decorators.csrf import csrf_exempt
+from django.views.generic import TemplateView
 
 from pedido.forms import OrderCreationForm
 
 from .models import Order, Product
-
-from django.core.serializers import serialize
-from django.http import HttpRequest, JsonResponse
-from django.utils.decorators import method_decorator
-from django.views.decorators.csrf import csrf_exempt
-from django.contrib.auth.decorators import login_required
-from django.views.generic import TemplateView
-
 
 # Create your views here.
 # @method_decorator(
 #     [csrf_exempt, login_required(login_url="login", redirect_field_name="next")],
 #     name="dispatch",
 # )
+
+def validate(json_v: dict):
+    # validate name has to be 50 chars max
+    if len(json_v[0]["name"]) > 50:
+        print(f'Error: {json_v[0]["name"]}')
+        return JsonResponse({"status": "Error", "message": "El nombre del pedido no puede ser mayor a 50 caracteres"})
+
+    # validate quantity has to be 20 units max
+    for i in range(0, len(json_v[1])):
+        if json_v[1][i]["quantity"] > 20:
+            return JsonResponse({"status": "Error", "message": "La cantidad de productos no puede ser mayor a 20 unidades"})
+
+    # validate quantity has to be positive and not 0
+    for i in range(0, len(json_v[1])):
+        if json_v[1][i]["quantity"] == 0:
+            return JsonResponse({"status": "Error", "message": "La cantidad de productos no puede ser menor a 0 unidades"})
+        if json_v[1][i]["quantity"] < 0:
+            return JsonResponse({"status": "Error", "message": "La cantidad de productos no puede ser negativa"})
+
 @method_decorator(
     [csrf_exempt, login_required(redirect_field_name="listOrder", login_url="login")],
     name="dispatch",
@@ -98,22 +114,8 @@ class OrderCreateView(TemplateView):
             # [{'name': 'JS3-ASD'}, [{'product': 'Aceite para Motor', 'quantity': 1}]]
             data: str = request.POST["data"]
             json_v = json.loads(data)
-            # validate name has to be 50 chars max
-            if len(json_v[0]["name"]) > 50:
-                print(f'Error: {json_v[0]["name"]}')
-                return JsonResponse({"status": "Error", "message": "El nombre del pedido no puede ser mayor a 50 caracteres"})
             
-            # validate quantity has to be 20 units max
-            for i in range(0, len(json_v[1])):
-                if json_v[1][i]["quantity"] > 20:
-                    return JsonResponse({"status": "Error", "message": "La cantidad de productos no puede ser mayor a 20 unidades"})
-            
-            # validate quantity has to be positive and not 0
-            for i in range(0, len(json_v[1])):
-                if json_v[1][i]["quantity"] == 0:
-                    return JsonResponse({"status": "Error", "message": "La cantidad de productos no puede ser menor a 0 unidades"})
-                if json_v[1][i]["quantity"] < 0:
-                    return JsonResponse({"status": "Error", "message": "La cantidad de productos no puede ser negativa"})
+            if validate(json_v) != None: return validate(json_v)
             
             # print(f'JSON: {json_v}')
             order = Order()

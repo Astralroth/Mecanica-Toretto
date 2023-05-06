@@ -52,7 +52,7 @@ class TestOrderClass(TestAuthClass):
         response = client.post("/order/list", {"action":"getData"})
         print(response.json())
         assert response.json()['data'][0]['json'] == [{'name':'Aceite para Motor', 'quantity':2}]
-        
+    
     # create a test to check if the user can write 100 words in the order name
     @pytest.mark.django_db
     def test_can_write_100_words_in_order_name(self, client: Client):
