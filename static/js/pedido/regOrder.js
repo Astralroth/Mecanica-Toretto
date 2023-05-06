@@ -136,8 +136,8 @@ $(function () {
             },
             async: false,
             success: function (data) {
-                con.connectar()
-                $('#myModalClient').modal('hide')
+                alert("Pedido agregado")
+                window.location.href = data.url
             }
         })
     })

@@ -1,476 +1,76 @@
-[
-    {
-        "model": "pedido.order",
-        "pk": 1,
-        "fields": {
-            "user": 1,
-            "name": "FX-3X-46",
-            "json": [
-                {
-                    "product": "Perno 2 1/4",
-                    "quantity": "8"
-                },
-                {
-                    "product": "Aceite para Motor",
-                    "quantity": 1
-                },
-                {
-                    "product": "Liquido para Frenos",
-                    "quantity": 1
-                },
-                {
-                    "product": "Liquido Refrigerante",
-                    "quantity": 1
-                }
-            ],
-            "state": "Pendiente",
-            "created_at": "2023-04-29T06:03:08.109Z",
-            "updated_at": "2023-04-30T23:13:36.136Z"
-        }
-    },
-    {
-        "model": "pedido.order",
-        "pk": 2,
-        "fields": {
-            "user": 1,
-            "name": "JS3-ASD",
-            "json": [
-                {
-                    "product": "Aceite para Motor",
-                    "quantity": 1
-                },
-                {
-                    "product": "Liquido para Frenos",
-                    "quantity": "2"
-                },
-                {
-                    "product": "Perno 2 1/4",
-                    "quantity": "12"
-                }
-            ],
-            "state": "Pendiente",
-            "created_at": "2023-05-01T00:27:05.316Z",
-            "updated_at": "2023-05-01T00:29:47.980Z"
-        }
-    },
-    {
-        "model": "pedido.product",
-        "pk": 1,
-        "fields": {
-            "name": "Liquido Refrigerante",
-            "created_at": "2023-04-29T09:14:02.820Z",
-            "updated_at": "2023-04-29T09:14:02.820Z"
-        }
-    },
-    {
-        "model": "pedido.product",
-        "pk": 2,
-        "fields": {
-            "name": "Perno 2 1/4",
-            "created_at": "2023-04-29T09:14:13.915Z",
-            "updated_at": "2023-04-29T09:14:13.915Z"
-        }
-    },
-    {
-        "model": "pedido.product",
-        "pk": 3,
-        "fields": {
-            "name": "Liquido para Frenos",
-            "created_at": "2023-04-29T09:15:33.303Z",
-            "updated_at": "2023-04-29T09:15:33.303Z"
-        }
-    },
-    {
-        "model": "pedido.product",
-        "pk": 4,
-        "fields": {
-            "name": "Aceite para Motor",
-            "created_at": "2023-04-29T09:15:42.695Z",
-            "updated_at": "2023-04-29T09:15:42.695Z"
-        }
-    },
-    {
-        "model": "admin.logentry",
-        "pk": 1,
-        "fields": {
-            "action_time": "2023-04-29T06:03:08.112Z",
-            "user": 1,
-            "content_type": 8,
-            "object_id": "1",
-            "object_repr": "Order object (1)",
-            "action_flag": 1,
-            "change_message": "[{\"added\": {}}]"
-        }
-    },
-    {
-        "model": "admin.logentry",
-        "pk": 2,
-        "fields": {
-            "action_time": "2023-04-29T08:11:30.040Z",
-            "user": 1,
-            "content_type": 8,
-            "object_id": "1",
-            "object_repr": "FX-3X-46",
-            "action_flag": 2,
-            "change_message": "[{\"changed\": {\"fields\": [\"Json\"]}}]"
-        }
-    },
-    {
-        "model": "admin.logentry",
-        "pk": 3,
-        "fields": {
-            "action_time": "2023-04-29T09:14:02.821Z",
-            "user": 1,
-            "content_type": 7,
-            "object_id": "1",
-            "object_repr": "Product object (1)",
-            "action_flag": 1,
-            "change_message": "[{\"added\": {}}]"
-        }
-    },
-    {
-        "model": "admin.logentry",
-        "pk": 4,
-        "fields": {
-            "action_time": "2023-04-29T09:14:13.916Z",
-            "user": 1,
-            "content_type": 7,
-            "object_id": "2",
-            "object_repr": "Product object (2)",
-            "action_flag": 1,
-            "change_message": "[{\"added\": {}}]"
-        }
-    },
-    {
-        "model": "admin.logentry",
-        "pk": 5,
-        "fields": {
-            "action_time": "2023-04-29T09:15:33.304Z",
-            "user": 1,
-            "content_type": 7,
-            "object_id": "3",
-            "object_repr": "Product object (3)",
-            "action_flag": 1,
-            "change_message": "[{\"added\": {}}]"
-        }
-    },
-    {
-        "model": "admin.logentry",
-        "pk": 6,
-        "fields": {
-            "action_time": "2023-04-29T09:15:42.697Z",
-            "user": 1,
-            "content_type": 7,
-            "object_id": "4",
-            "object_repr": "Product object (4)",
-            "action_flag": 1,
-            "change_message": "[{\"added\": {}}]"
-        }
-    },
-    {
-        "model": "auth.permission",
-        "pk": 1,
-        "fields": {
-            "name": "Can add log entry",
-            "content_type": 1,
-            "codename": "add_logentry"
-        }
-    },
-    {
-        "model": "auth.permission",
-        "pk": 2,
-        "fields": {
-            "name": "Can change log entry",
-            "content_type": 1,
-            "codename": "change_logentry"
-        }
-    },
-    {
-        "model": "auth.permission",
-        "pk": 3,
-        "fields": {
-            "name": "Can delete log entry",
-            "content_type": 1,
-            "codename": "delete_logentry"
-        }
-    },
-    {
-        "model": "auth.permission",
-        "pk": 4,
-        "fields": {
-            "name": "Can view log entry",
-            "content_type": 1,
-            "codename": "view_logentry"
-        }
-    },
-    {
-        "model": "auth.permission",
-        "pk": 5,
-        "fields": {
-            "name": "Can add permission",
-            "content_type": 2,
-            "codename": "add_permission"
-        }
-    },
-    {
-        "model": "auth.permission",
-        "pk": 6,
-        "fields": {
-            "name": "Can change permission",
-            "content_type": 2,
-            "codename": "change_permission"
-        }
-    },
-    {
-        "model": "auth.permission",
-        "pk": 7,
-        "fields": {
-            "name": "Can delete permission",
-            "content_type": 2,
-            "codename": "delete_permission"
-        }
-    },
-    {
-        "model": "auth.permission",
-        "pk": 8,
-        "fields": {
-            "name": "Can view permission",
-            "content_type": 2,
-            "codename": "view_permission"
-        }
-    },
-    {
-        "model": "auth.permission",
-        "pk": 9,
-        "fields": {
-            "name": "Can add group",
-            "content_type": 3,
-            "codename": "add_group"
-        }
-    },
-    {
-        "model": "auth.permission",
-        "pk": 10,
-        "fields": {
-            "name": "Can change group",
-            "content_type": 3,
-            "codename": "change_group"
-        }
-    },
-    {
-        "model": "auth.permission",
-        "pk": 11,
-        "fields": {
-            "name": "Can delete group",
-            "content_type": 3,
-            "codename": "delete_group"
-        }
-    },
-    {
-        "model": "auth.permission",
-        "pk": 12,
-        "fields": {
-            "name": "Can view group",
-            "content_type": 3,
-            "codename": "view_group"
-        }
-    },
-    {
-        "model": "auth.permission",
-        "pk": 13,
-        "fields": {
-            "name": "Can add user",
-            "content_type": 4,
-            "codename": "add_user"
-        }
-    },
-    {
-        "model": "auth.permission",
-        "pk": 14,
-        "fields": {
-            "name": "Can change user",
-            "content_type": 4,
-            "codename": "change_user"
-        }
-    },
-    {
-        "model": "auth.permission",
-        "pk": 15,
-        "fields": {
-            "name": "Can delete user",
-            "content_type": 4,
-            "codename": "delete_user"
-        }
-    },
-    {
-        "model": "auth.permission",
-        "pk": 16,
-        "fields": {
-            "name": "Can view user",
-            "content_type": 4,
-            "codename": "view_user"
-        }
-    },
-    {
-        "model": "auth.permission",
-        "pk": 17,
-        "fields": {
-            "name": "Can add content type",
-            "content_type": 5,
-            "codename": "add_contenttype"
-        }
-    },
-    {
-        "model": "auth.permission",
-        "pk": 18,
-        "fields": {
-            "name": "Can change content type",
-            "content_type": 5,
-            "codename": "change_contenttype"
-        }
-    },
-    {
-        "model": "auth.permission",
-        "pk": 19,
-        "fields": {
-            "name": "Can delete content type",
-            "content_type": 5,
-            "codename": "delete_contenttype"
-        }
-    },
-    {
-        "model": "auth.permission",
-        "pk": 20,
-        "fields": {
-            "name": "Can view content type",
-            "content_type": 5,
-            "codename": "view_contenttype"
-        }
-    },
-    {
-        "model": "auth.permission",
-        "pk": 21,
-        "fields": {
-            "name": "Can add session",
-            "content_type": 6,
-            "codename": "add_session"
-        }
-    },
-    {
-        "model": "auth.permission",
-        "pk": 22,
-        "fields": {
-            "name": "Can change session",
-            "content_type": 6,
-            "codename": "change_session"
-        }
-    },
-    {
-        "model": "auth.permission",
-        "pk": 23,
-        "fields": {
-            "name": "Can delete session",
-            "content_type": 6,
-            "codename": "delete_session"
-        }
-    },
-    {
-        "model": "auth.permission",
-        "pk": 24,
-        "fields": {
-            "name": "Can view session",
-            "content_type": 6,
-            "codename": "view_session"
-        }
-    },
-    {
-        "model": "auth.permission",
-        "pk": 25,
-        "fields": {
-            "name": "Can add product",
-            "content_type": 7,
-            "codename": "add_product"
-        }
-    },
-    {
-        "model": "auth.permission",
-        "pk": 26,
-        "fields": {
-            "name": "Can change product",
-            "content_type": 7,
-            "codename": "change_product"
-        }
-    },
-    {
-        "model": "auth.permission",
-        "pk": 27,
-        "fields": {
-            "name": "Can delete product",
-            "content_type": 7,
-            "codename": "delete_product"
-        }
-    },
-    {
-        "model": "auth.permission",
-        "pk": 28,
-        "fields": {
-            "name": "Can view product",
-            "content_type": 7,
-            "codename": "view_product"
-        }
-    },
-    {
-        "model": "auth.permission",
-        "pk": 29,
-        "fields": {
-            "name": "Can add order",
-            "content_type": 8,
-            "codename": "add_order"
-        }
-    },
-    {
-        "model": "auth.permission",
-        "pk": 30,
-        "fields": {
-            "name": "Can change order",
-            "content_type": 8,
-            "codename": "change_order"
-        }
-    },
-    {
-        "model": "auth.permission",
-        "pk": 31,
-        "fields": {
-            "name": "Can delete order",
-            "content_type": 8,
-            "codename": "delete_order"
-        }
-    },
-    {
-        "model": "auth.permission",
-        "pk": 32,
-        "fields": {
-            "name": "Can view order",
-            "content_type": 8,
-            "codename": "view_order"
-        }
-    },
-    {
-        "model": "auth.user",
-        "pk": 1,
-        "fields": {
-            "password": "pbkdf2_sha256$600000$7zY1bWc2hLFuuDPEIAPr4k$sJ5HwmqtCNcCbgwxniFaKJ2c0yCdMatyXMiL/Wu2pss=",
-            "last_login": "2023-04-30T23:13:01.191Z",
-            "is_superuser": true,
-            "username": "astralroth",
-            "first_name": "",
-            "last_name": "",
-            "email": "fr.sandovalf@duocuc.cl",
-            "is_staff": true,
-            "is_active": true,
-            "date_joined": "2023-04-29T05:56:57.749Z",
-            "groups": [],
-            "user_permissions": []
-        }
+[{
+    "model": "pedido.order",
+    "pk": 1,
+    "fields": {
+        "user": 1,
+        "name": "FX-3X-46",
+        "json": [{
+            "product": "Perno 2 1/4",
+            "quantity": "8"
+        }, {
+            "product": "Aceite para Motor",
+            "quantity": 1
+        }, {
+            "product": "Liquido para Frenos",
+            "quantity": 1
+        }, {
+            "product": "Liquido Refrigerante",
+            "quantity": 1
+        }],
+        "state": "Pendiente",
+        "created_at": "2023-04-29T06:03:08.109Z",
+        "updated_at": "2023-04-30T23:13:36.136Z"
     }
-]
+}, {
+    "model": "pedido.order",
+    "pk": 2,
+    "fields": {
+        "user": 1,
+        "name": "JS3-ASD",
+        "json": [{
+            "product": "Aceite para Motor",
+            "quantity": 1
+        }, {
+            "product": "Liquido para Frenos",
+            "quantity": "2"
+        }, {
+            "product": "Perno 2 1/4",
+            "quantity": "12"
+        }],
+        "state": "Pendiente",
+        "created_at": "2023-05-01T00:27:05.316Z",
+        "updated_at": "2023-05-01T00:29:47.980Z"
+    }
+}, {
+    "model": "pedido.product",
+    "pk": 1,
+    "fields": {
+        "name": "Liquido Refrigerante",
+        "created_at": "2023-04-29T09:14:02.820Z",
+        "updated_at": "2023-04-29T09:14:02.820Z"
+    }
+}, {
+    "model": "pedido.product",
+    "pk": 2,
+    "fields": {
+        "name": "Perno 2 1/4",
+        "created_at": "2023-04-29T09:14:13.915Z",
+        "updated_at": "2023-04-29T09:14:13.915Z"
+    }
+}, {
+    "model": "pedido.product",
+    "pk": 3,
+    "fields": {
+        "name": "Liquido para Frenos",
+        "created_at": "2023-04-29T09:15:33.303Z",
+        "updated_at": "2023-04-29T09:15:33.303Z"
+    }
+}, {
+    "model": "pedido.product",
+    "pk": 4,
+    "fields": {
+        "name": "Aceite para Motor",
+        "created_at": "2023-04-29T09:15:42.695Z",
+        "updated_at": "2023-04-29T09:15:42.695Z"
+    }
+}]

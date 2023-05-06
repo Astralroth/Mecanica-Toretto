@@ -1,0 +1,33 @@
+{% extends '../base.html' %}
+{% load static %}
+{% load widget_tweaks %}
+
+{% block css %}{% endblock css %}
+
+{% block content %}
+<div class="container">
+    <div class="card">
+        <div class="card-body">
+            <div class="row">
+                <form method='POST'>
+                    {% csrf_token %}
+                    {% for item in form %}
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            <label for="{{ item.id_for_label }}">{{ item.label }}</label>
+                            {% render_field item class="form-control" %}
+                        </div>
+                    </div>
+                    {% endfor %}
+                    <div class="card-footer">
+                        <button type="submit">Iniciar Sesion</button>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}
+
+{% block js %}{% endblock js %}

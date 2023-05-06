@@ -14,9 +14,14 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
+from django.shortcuts import HttpResponseRedirect
 from django.urls import include, path
+from django.contrib.auth.views import LoginView, LogoutView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('order/', include("pedido.urls")),
+    path('auth/login', LoginView.as_view(), name="login"),
+    path('auth/logout', LogoutView.as_view(), name="logout"),
+    path('', lambda request: HttpResponseRedirect('auth/login')),
 ]
