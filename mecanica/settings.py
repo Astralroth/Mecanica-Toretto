@@ -32,6 +32,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'pedido',
+    'producto',
     'widget_tweaks',
     'django.contrib.admin',
     'django.contrib.auth',
