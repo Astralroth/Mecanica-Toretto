@@ -13,15 +13,25 @@ class Product(models.Model):
     id = models.AutoField(primary_key=True)
     nombre = models.CharField(max_length=50, verbose_name= "Nombre Producto")
     descripcion = models.CharField(max_length=100, verbose_name= "Descripcion")
-    marca = models.CharField(max_length=50, verbose_name= "Marca Producto")
+    provider = models.ForeignKey('Provider', on_delete=models.CASCADE)
     precio = models.IntegerField(verbose_name= "Precio Producto")
     estado = models.IntegerField(choices= estado_producto, verbose_name="Estado Producto")
-    date_joined = models.DateTimeField(auto_now_add=True, verbose_name="Fecha Registro")
-    data_update = models.DateTimeField(auto_now_add=True, verbose_name="Actualizacion Registro")
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return f'{self.name}'
-    
+        return f'{self.nombre}'
+
+class Provider(models.Model):
+    id = models.AutoField(primary_key=True)
+    user = models.ForeignKey('auth.User', on_delete=models.CASCADE)
+    nombre = models.CharField(max_length=50, verbose_name= "Nombre Proveedor")
+    descripcion = models.CharField(max_length=100, verbose_name= "Descripcion")
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return f'{self.nombre}'
 
 
 

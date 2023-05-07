@@ -9,7 +9,7 @@ class ProductForm(forms.ModelForm):
         model = Product
         fields = ('nombre',
                   'descripcion',
-                  'marca',
+                  'provider',
                   'precio',
                   'estado'
                   )
