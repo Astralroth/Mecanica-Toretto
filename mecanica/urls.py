@@ -24,7 +24,9 @@ urlpatterns = [
     path('auth/login', LoginView.as_view(), name="login"),
     path('auth/logout', LogoutView.as_view(), name="logout"),
     path('', lambda request: HttpResponseRedirect('auth/login')),
-    path('prod/', include("producto.urls"))
+    path('prod/', include("producto.urls")),
+    path('serv/', include("servicio.urls")),
+    
 ]
 
 
