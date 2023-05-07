@@ -4,10 +4,17 @@
 
 {% block css %}
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <script src="https://kit.fontawesome.com/4e3774bba6.js" crossorigin="anonymous"></script>
+
 {% endblock css %}
 
 {% block content %}
   <h1 id='titulo'>Listado de servicios</h1>
+  <div class="search-wrapper">
+    <input type="text" id="buscador" class="buscador" onkeyup="filtrarTabla()" placeholder="Buscar Servicio">
+    <i class="fa-solid fa-magnifying-glass" style="color: #cec0c0;"></i>
+  </div>
+  </div>
   <table>
     <thead>
       <tr>
@@ -22,6 +29,7 @@
     <tbody>
       {% for servicio in object_list %}
       <tr>
+        
         <td>{{ servicio.nombre }}</td>
         <td>{{ servicio.descripcion }}</td>
         <td>{{ servicio.precio }}</td>
@@ -40,6 +48,20 @@
         </tbody>
         
           </table>
+          <div id="no-results" class="no-results" style="display:none;">Servicio no encontrado</div>
+          <br>
           <br>
           <a href="{% url 'taller:registrar_servicio' %}"><button id="boton3">Registrar nuevo servicio</button></a>
+<br>
+<br>
+
+
 {% endblock %}
+
+{% block js %}
+
+
+<script src="/static/js/servicio/filtro_servicios.js"></script>
+
+
+{% endblock js %}
