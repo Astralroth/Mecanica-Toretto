@@ -15,7 +15,7 @@ class conn {
     }
 }
 
-function getData(data) {
+function getData(data, providers = []) {
     var tbl = $('#tbl').DataTable({
         responsive: true,
         autoWidth: false,
@@ -29,13 +29,32 @@ function getData(data) {
                 data: 'nombre',
             },
             {
-                data: 'provider'
+                data: 'provider',
+                render: function (data, type, row, meta) {
+                    for (let i = 0; i < providers.length; i++) {
+                        if (providers[i]['user'] == data) {
+                            return providers[i]['nombre']
+                        }
+                    }
+                }
             },
             {
                 data: 'precio'
             },
             {
-                data: 'estado'
+                data: 'estado',
+                render: function (data, type, row, meta) {
+                    estado_producto = [
+                        [0, "Nuevo"],
+                        [1, "Usado"],
+                        [3, "De fabrica"]
+                    ]
+                    for (let i = 0; i < estado_producto.length; i++) {
+                        if (estado_producto[i][0] == data) {
+                            return estado_producto[i][1]
+                        }
+                    }
+                }
             },
             {
                 data: 'options'
@@ -71,7 +90,9 @@ $(function () {
     var con = new conn()
     con.connectar()
 
-    var tbl = getData(con.data['data'])
+    console.log(con.data['provider'])
+
+    var tbl = getData(con.data['data'], con.data['provider'])
 
     
     tbl.on('click', 'btn[rel="edit"]', (e) => {
@@ -106,7 +127,13 @@ $(function () {
         })
         var action = $('input[name="action"]').val()
 
-        parameters.push(tbl.data().toArray()[0])
+        parameters.push({
+            "nombre": $('input[name="nombre"]').val(),
+            "descripcion": $('input[name="descripcion"]').val(),
+            "provider": $('select[name="provider"]').val(),
+            "precio": $('input[name="precio"]').val(),
+            "estado": $('select[name="estado"]').val(),
+        })
 
         var postdata = JSON.stringify(parameters)
         $.ajax({

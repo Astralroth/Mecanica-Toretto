@@ -41,29 +41,46 @@ class ProductListView(TemplateView):
             productos = Product.objects.all()
             parsed: dict = serialize("json", productos)
             json_v = json.loads(parsed)
-
+            
+            # print(f'JSON: {json_v}')
+            
             data = []
             for i in range(0, productos.__len__()):
                 json_v[i]["fields"]["id"] = json_v[i]["pk"]
                 data.append(json_v[i]["fields"])
+
+            # print(f'Data: {data}')
             
-            response = {"data": data}
+            provider = Provider.objects.all()
+            prov_parsed: dict = serialize("json", provider)
+            json_p = json.loads(prov_parsed)
+            
+            # print(f'JSON: {json_p}')
+            
+            data_provider = []
+            for i in range(0, provider.__len__()):
+                data_provider.append({"user": json_p[i]["pk"], "nombre": json_p[i]["fields"]["nombre"]})
+            
+            # print(f'Data: {data_provider}')
+            
+            response = {"data": data, "provider": data_provider}
+
             return JsonResponse(response, safe=False)
         elif action == "edit":
             data: str = request.POST["data"]
             json_v = json.loads(data)
             
-            print(f'JSON: {json_v}')
+            # print(f'JSON: {json_v}')
             id = json_v[0]["value"]
-            order = Product(id=id)
-            order.nombre = json_v[1]["nombre"]
-            order.descripcion = json_v[1]["descripcion"]
-            order.provider = Provider.objects.get(id=json_v[1]["provider"])
-            order.precio = json_v[1]["precio"]
-            order.estado = json_v[1]["estado"]
-            order.save()
-            # print(f'Order: {order}')
-            return JsonResponse({"status": "Redirect", "url": reverse("listProduct")})
+            prod = Product.objects.get(id=id)
+            prod.nombre = json_v[1]["nombre"]
+            prod.descripcion = json_v[1]["descripcion"]
+            prod.provider = Provider.objects.get(id=json_v[1]["provider"])
+            prod.precio = json_v[1]["precio"]
+            prod.estado = json_v[1]["estado"]
+            prod.save()
+            print(f'Prod: {prod}')
+            return JsonResponse({"status": "Correcto", "message": "Se ha editado el pedido correctamente"})
         else:
             return JsonResponse({"status":"Error","error": "No se ha encontrado la acción solicitada"})
     
