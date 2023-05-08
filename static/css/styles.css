@@ -1,0 +1,353 @@
+body{
+    background-size: cover;
+    background-image: url("https://img.freepik.com/free-photo/car-being-taking-care-workshop_23-2149580532.jpg?w=996&t=st=1683413415~exp=1683414015~hmac=49b068f0fa808317570a2df554f771bc4251ce656d58d2f411c0be5ad0c50f2f");
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 120px; 
+    }
+    
+    table th, table td {
+      padding: 5px 17px; 
+      border: 1px solid #ddd;
+    }
+    
+  
+    table th {
+      background-color: #f2f2f2;
+      font-weight: bold;
+    }
+    
+  
+    table tr:nth-child(odd) {
+      background-color: #f9f9f9;
+    }
+    table tr:nth-child(even) {
+      background-color: #ffffff; 
+    }
+  
+    table a {
+      color: #337ab7;
+      text-decoration: none;
+    }
+    
+    table a:hover {
+      text-decoration: underline;
+    }
+    
+  
+  #titulo{
+    font-family: 'Arial', sans-serif;
+    font-size: 48px;
+    color: #fff;
+    text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #aa5188, 0 0 35px #ac528a, 0 0 40px #ff6ec7, 0 0 50px #df66b1, 0 0 75px rgba(255, 110, 199, 0.4);
+    text-align: center;
+  }
+  
+  table tr:hover {
+    background-color: #f5f5f5; 
+  }
+  table td:hover {
+    background-color: #f5f5f5; 
+  }
+  
+  
+  #boton1{
+    background: #3498db;
+    background-image: -webkit-linear-gradient(top, #3498db, #2980b9);
+    background-image: -moz-linear-gradient(top, #3498db, #2980b9);
+    background-image: -ms-linear-gradient(top, #3498db, #2980b9);
+    background-image: -o-linear-gradient(top, #3498db, #2980b9);
+    background-image: linear-gradient(to bottom, #3498db, #2980b9);
+    -webkit-border-radius: 60;
+    -moz-border-radius: 60;
+    border-radius: 60px;
+    font-family: Arial;
+    color: #ffffff;
+    font-size: 11px;
+    padding: 10px 20px 10px 20px;
+    text-decoration: none;
+    
+  }
+  
+  #boton1:hover {
+    background: #3cb0fd;
+    background-image: -webkit-linear-gradient(top, #3cb0fd, #3498db);
+    background-image: -moz-linear-gradient(top, #3cb0fd, #3498db);
+    background-image: -ms-linear-gradient(top, #3cb0fd, #3498db);
+    background-image: -o-linear-gradient(top, #3cb0fd, #3498db);
+    background-image: linear-gradient(to bottom, #3cb0fd, #3498db);
+    text-decoration: none;
+  }
+  
+  
+  #boton2 {
+    background: #d93434;
+    background-image: -webkit-linear-gradient(top, #d93434, #b82b2b);
+    background-image: -moz-linear-gradient(top, #d93434, #b82b2b);
+    background-image: -ms-linear-gradient(top, #d93434, #b82b2b);
+    background-image: -o-linear-gradient(top, #d93434, #b82b2b);
+    background-image: linear-gradient(to bottom, #d93434, #b82b2b);
+    -webkit-border-radius: 60;
+    -moz-border-radius: 60;
+    border-radius: 60px;
+    font-family: Arial;
+    color: #ffffff;
+    font-size: 11px;
+    padding: 10px 20px 10px 20px;
+    text-decoration: none;
+   
+  }
+  
+  #boton2:hover {
+    background: #d93434;
+    background-image: -webkit-linear-gradient(top, #d93434, #b82b2b);
+    background-image: -moz-linear-gradient(top, #d93434, #b82b2b);
+    background-image: -ms-linear-gradient(top, #d93434, #b82b2b);
+    background-image: -o-linear-gradient(top, #d93434, #b82b2b);
+    background-image: linear-gradient(to bottom, #d93434, #b82b2b);
+    -webkit-border-radius: 60;
+    -moz-border-radius: 60;
+    border-radius: 60px;
+    font-family: Arial;
+    color: #ffffff;
+    font-size: 11px;
+    padding: 10px 20px 10px 20px;
+    text-decoration: none;
+  }
+  
+  
+  
+  #boton3{
+    background: #34d958;
+    background-image: -webkit-linear-gradient(top, #34d958, #35b82c);
+    background-image: -moz-linear-gradient(top, #34d958, #35b82c);
+    background-image: -ms-linear-gradient(top, #34d958, #35b82c);
+    background-image: -o-linear-gradient(top, #34d958, #35b82c);
+    background-image: linear-gradient(to bottom, #34d958, #35b82c);
+    -webkit-border-radius: 60;
+    -moz-border-radius: 60;
+    border-radius: 60px;
+    font-family: Arial;
+    color: #ffffff;
+    font-size: 11px;
+    padding: 10px 20px 10px 20px;
+    text-decoration: none;
+  }
+  
+  #boton3:hover {
+    background: #3cfa65;
+    background-image: -webkit-linear-gradient(top, #3cfa65, #34d984);
+    background-image: -moz-linear-gradient(top, #3cfa65, #34d984);
+    background-image: -ms-linear-gradient(top, #3cfa65, #34d984);
+    background-image: -o-linear-gradient(top, #3cfa65, #34d984);
+    background-image: linear-gradient(to bottom, #3cfa65, #34d984);
+    text-decoration: none;
+  }
+  
+  header{
+    width: 100%;
+    margin-top: -10px;
+    background-image: url("https://img.freepik.com/free-photo/modern-background-with-lines_1361-3533.jpg?w=996&t=st=1683414171~exp=1683414771~hmac=0c8c8994e12b877178f653ff6b667b389efd44efa9bf05dc63287e606ce6c1b3");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+  }
+  
+  nav{
+    height: 100px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  
+  }
+  
+  .bar-btn{
+    font-size: 25px;
+    color: #fff;
+    margin-right: 20px;
+    cursor: pointer;
+  }
+  
+  
+  .nav-menu{
+    position: fixed;
+    width: 100%;
+    height: 0vh;
+    top: 100px;
+    background: rgba(0,0,0,.95);
+    text-align: center;
+    transition: all .5s;
+  }
+  
+  .nav-menu li{
+    display: none;
+    line-height: 30px;
+    margin: 50px 0;
+    transition: all .5s;
+  
+  }
+  
+  .nav-menu li a {
+    color: #fff;
+    font-size: 16px;
+    text-transform: uppercase;
+    font-weight: 600;
+    text-decoration: none;
+  }
+  
+  .nav-menu li a.active, .nav-menu li a:hover{
+  
+    color: white;
+    transition: .3s;
+    text-shadow: 0 0 10px #fff;
+  }
+  
+  
+  #check{
+    display: none;
+  
+  }
+  
+  #check:checked ~ .nav-menu{
+    height: 100vh;
+  
+  
+  }
+  
+  #check:checked ~ .nav-menu li {
+    display: block;
+  }
+  
+  @media screen and (min-width: 768px){
+    .logo{
+        margin-left: 50px;
+  
+    }
+  
+    nav{
+        height: 100px;
+  
+  
+    }
+  
+    .bar-btn{
+        display: none;
+  
+    }
+  
+    .nav-menu{
+        position: relative;
+        height: 100px;
+        top: 0;
+        background: none;
+        transition: none;
+        text-align: right;
+        margin-right: 50px;
+    }
+  
+    .nav-menu li{
+        display: inline-block;
+        line-height: 100px;
+        margin: 0 20px;
+        transition: none;
+  
+    }
+  
+  
+    .nav-menu li a{
+        font-size: 13px;
+    }
+  
+  
+    .banner-text h1{
+        font-size: 70px;
+        margin-bottom: 30px;
+    }
+  
+    .banner-text h2 {
+        font-size: 20px;
+    }
+  
+     
+  
+  
+  }
+
+
+.form-container {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+input[type="text"],
+textarea {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.btn-submit {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.btn-submit:hover {
+  background-color: #0056b3;
+}
+
+
+#tituloo{
+  color: white;
+  text-align: right;
+}
+
+
+.no-results {
+  color: white;
+  font-size: 20px;
+  text-align: center;
+ }
+ .search-wrapper {
+  display: flex;
+  align-items: center;
+  width: 300px; /* Ajusta el valor según tus necesidades */
+  margin-bottom: 10px; /* Ajusta el valor según tus necesidades */
+}
+
+.buscador {
+  flex: 1;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.fa-search {
+  margin-left: 8px;
+  color: #555; /* Ajusta el color según tus necesidades */
+}

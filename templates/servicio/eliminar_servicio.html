@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+{% endblock css %}
+
+{% block content %}
+  <div class="form-container">
+    <h1>Eliminar servicio</h1>
+    <p>¿Estás seguro de que deseas eliminar este servicio?</p>
+    <form method="post">
+      {% csrf_token %}
+      <button id="boton2" type="submit" class="btn-delete">Eliminar</button>
+    </form>
+    <br>
+    <button id="boton3" onclick="history.back()" class="btn-back">Volver</button>
+  </div>
+{% endblock %}

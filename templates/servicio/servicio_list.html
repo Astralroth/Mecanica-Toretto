@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <script src="https://kit.fontawesome.com/4e3774bba6.js" crossorigin="anonymous"></script>
+
+{% endblock css %}
+
+{% block content %}
+  <h1 id='titulo'>Listado de servicios</h1>
+  <div class="search-wrapper">
+    <input type="text" id="buscador" class="buscador" onkeyup="filtrarTabla()" placeholder="Buscar Servicio">
+    <i class="fa-solid fa-magnifying-glass" style="color: #cec0c0;"></i>
+  </div>
+  </div>
+  <table>
+    <thead>
+      <tr>
+        <th>Nombre</th>
+        <th>Descripción</th>
+        <th>Precio</th>
+        <th>Tiempo estimado hr</th>
+        <th>Productos asociados</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for servicio in object_list %}
+      <tr>
+        
+        <td>{{ servicio.nombre }}</td>
+        <td>{{ servicio.descripcion }}</td>
+        <td>{{ servicio.precio }}</td>
+        <td>{{ servicio.tiempo_estimado }}</td>
+        <td>{{ servicio.productos_asociados }}</td>
+        <td>
+          <a href="{% url 'taller:modificar_servicio' servicio.pk %}"><button id="boton1">Modificar</button></a>
+          <a href="{%url 'taller:eliminar_servicio' servicio.pk %}"><button id="boton2">Eliminar</button></a>
+        </td>
+        </tr>
+        {% empty %}
+        <tr>
+        <td colspan="6">No hay servicios registrados.</td>
+        </tr>
+        {% endfor %}
+        </tbody>
+        
+          </table>
+          <div id="no-results" class="no-results" style="display:none;">Servicio no encontrado</div>
+          <br>
+          <br>
+          <a href="{% url 'taller:registrar_servicio' %}"><button id="boton3">Registrar nuevo servicio</button></a>
+<br>
+<br>
+
+
+{% endblock %}
+
+{% block js %}
+
+
+<script src="/static/js/servicio/filtro_servicios.js"></script>
+
+
+{% endblock js %}
