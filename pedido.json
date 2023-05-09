@@ -1,76 +1,108 @@
-[{
-    "model": "pedido.order",
-    "pk": 1,
-    "fields": {
-        "user": 1,
-        "name": "FX-3X-46",
-        "json": [{
-            "product": "Perno 2 1/4",
-            "quantity": "8"
-        }, {
-            "product": "Aceite para Motor",
-            "quantity": 1
-        }, {
-            "product": "Liquido para Frenos",
-            "quantity": 1
-        }, {
-            "product": "Liquido Refrigerante",
-            "quantity": 1
-        }],
-        "state": "Pendiente",
-        "created_at": "2023-04-29T06:03:08.109Z",
-        "updated_at": "2023-04-30T23:13:36.136Z"
+[
+    {
+        "model": "pedido.order",
+        "pk": 1,
+        "fields": {
+            "user": 1,
+            "name": "FX-3X-46",
+            "json": [
+                {
+                    "product": "Perno 2 1/4",
+                    "quantity": "8"
+                },
+                {
+                    "product": "Aceite para Motor",
+                    "quantity": 1
+                },
+                {
+                    "product": "Liquido para Frenos",
+                    "quantity": 1
+                },
+                {
+                    "product": "Liquido Refrigerante",
+                    "quantity": 1
+                }
+            ],
+            "state": "Pendiente",
+            "created_at": "2023-04-29T06:03:08.109Z",
+            "updated_at": "2023-04-30T23:13:36.136Z"
+        }
+    },
+    {
+        "model": "pedido.order",
+        "pk": 2,
+        "fields": {
+            "user": 1,
+            "name": "JS3-ASD",
+            "json": [
+                {
+                    "product": "Aceite para Motor",
+                    "quantity": 1
+                },
+                {
+                    "product": "Liquido para Frenos",
+                    "quantity": "2"
+                },
+                {
+                    "product": "Perno 2 1/4",
+                    "quantity": "12"
+                }
+            ],
+            "state": "Pendiente",
+            "created_at": "2023-05-01T00:27:05.316Z",
+            "updated_at": "2023-05-01T00:29:47.980Z"
+        }
+    },
+    {
+        "model": "producto.product",
+        "pk": 1,
+        "fields": {
+            "nombre": "Liquido Refrigerante",
+            "descripcion": "Motor V8",
+            "provider": 1,
+            "precio": 30000,
+            "estado": 0,
+            "created_at": "2023-04-29T09:14:02.820Z",
+            "updated_at": "2023-04-29T09:14:02.820Z"
+        }
+    },
+    {
+        "model": "producto.product",
+        "pk": 2,
+        "fields": {
+            "nombre": "Perno 2 1/4",
+            "descripcion": "Motor V8",
+            "provider": 1,
+            "precio": 30000,
+            "estado": 0,
+            "created_at": "2023-04-29T09:14:13.915Z",
+            "updated_at": "2023-04-29T09:14:13.915Z"
+        }
+    },
+    {
+        "model": "producto.product",
+        "pk": 3,
+        "fields": {
+            "nombre": "Liquido para Frenos",
+            "descripcion": "Motor V8",
+            "provider": 1,
+            "precio": 30000,
+            "estado": 0,
+            "created_at": "2023-04-29T09:15:33.303Z",
+            "updated_at": "2023-04-29T09:15:33.303Z"
+        }
+    },
+    {
+        "model": "producto.product",
+        "pk": 4,
+        "fields": {
+            "nombre": "Aceite para Motor",
+            "descripcion": "Motor V8",
+            "provider": 1,
+            "precio": 30000,
+            "estado": 0,
+            "created_at": "2023-04-29T09:15:42.695Z",
+            "updated_at": "2023-04-29T09:15:42.695Z"
+        }
     }
-}, {
-    "model": "pedido.order",
-    "pk": 2,
-    "fields": {
-        "user": 1,
-        "name": "JS3-ASD",
-        "json": [{
-            "product": "Aceite para Motor",
-            "quantity": 1
-        }, {
-            "product": "Liquido para Frenos",
-            "quantity": "2"
-        }, {
-            "product": "Perno 2 1/4",
-            "quantity": "12"
-        }],
-        "state": "Pendiente",
-        "created_at": "2023-05-01T00:27:05.316Z",
-        "updated_at": "2023-05-01T00:29:47.980Z"
-    }
-}, {
-    "model": "pedido.product",
-    "pk": 1,
-    "fields": {
-        "name": "Liquido Refrigerante",
-        "created_at": "2023-04-29T09:14:02.820Z",
-        "updated_at": "2023-04-29T09:14:02.820Z"
-    }
-}, {
-    "model": "pedido.product",
-    "pk": 2,
-    "fields": {
-        "name": "Perno 2 1/4",
-        "created_at": "2023-04-29T09:14:13.915Z",
-        "updated_at": "2023-04-29T09:14:13.915Z"
-    }
-}, {
-    "model": "pedido.product",
-    "pk": 3,
-    "fields": {
-        "name": "Liquido para Frenos",
-        "created_at": "2023-04-29T09:15:33.303Z",
-        "updated_at": "2023-04-29T09:15:33.303Z"
-    }
-}, {
-    "model": "pedido.product",
-    "pk": 4,
-    "fields": {
-        "name": "Aceite para Motor",
-        "created_at": "2023-04-29T09:15:42.695Z",
-        "updated_at": "2023-04-29T09:15:42.695Z"
-    }
-}]
+]
