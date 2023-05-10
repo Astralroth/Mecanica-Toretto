@@ -1,7 +1,7 @@
 function filtrarTabla() {
-  let input, filter, table, tr, td, i, txtValue;
-  input = document.getElementById("buscador");
-  filter = input.value.toUpperCase();
+  let nombreInput, precioInput, table, tr, tdNombre, tdPrecio, i, nombreValue, precioValue;
+  nombreInput = document.getElementById("buscador");
+  precioInput = document.getElementById("filtro-precio");
   table = document.getElementsByTagName("table")[0];
   tr = table.getElementsByTagName("tr");
 
@@ -9,10 +9,23 @@ function filtrarTabla() {
   let visibleRows = 0;
 
   for (i = 0; i < tr.length; i++) {
-    td = tr[i].getElementsByTagName("td")[0];
-    if (td) {
-      txtValue = td.textContent || td.innerText;
-      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+    tdNombre = tr[i].getElementsByTagName("td")[0];
+    tdPrecio = tr[i].getElementsByTagName("td")[2];
+
+    if (tdNombre && tdPrecio) {
+      nombreValue = tdNombre.textContent || tdNombre.innerText;
+      precioValue = tdPrecio.textContent || tdPrecio.innerText;
+
+      const nombreFilter = nombreInput.value.trim().toUpperCase();
+      const precioFilter = precioInput.value.trim();
+
+      // Aplica el filtro del nombre
+      const nombreMatch = nombreFilter === '' || nombreValue.toUpperCase().indexOf(nombreFilter) > -1;
+
+      // Aplica el filtro del precio
+      const precioMatch = precioFilter === '' || parseFloat(precioValue.replace('$', '')) <= parseFloat(precioFilter);
+
+      if (nombreMatch && precioMatch) {
         tr[i].style.display = "";
         visibleRows++;
       } else {
@@ -22,13 +35,11 @@ function filtrarTabla() {
   }
 
   // Muestra u oculta el mensaje 'Registros no encontrados' según el número de registros visibles
-  const noResultsElement = document.getElementById('no-results');
+  const noResultsElement = document.getElementById("no-results");
   if (visibleRows === 0) {
-    noResultsElement.style.display = 'block';
+    noResultsElement.style.display = "block";
   } else {
-    noResultsElement.style.display = 'none';
+    noResultsElement.style.display = "none";
   }
 }
 
-
-console.log("wena")

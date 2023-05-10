@@ -5,7 +5,6 @@
 {% block css %}
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
     <script src="https://kit.fontawesome.com/4e3774bba6.js" crossorigin="anonymous"></script>
-
 {% endblock css %}
 
 {% block content %}
@@ -14,6 +13,10 @@
     <input type="text" id="buscador" class="buscador" onkeyup="filtrarTabla()" placeholder="Buscar Servicio">
     <i class="fa-solid fa-magnifying-glass" style="color: #cec0c0;"></i>
   </div>
+  <div class="search-wrapper">
+    <input type="text" id="filtro-precio" class="buscador" onkeyup="filtrarTabla()" placeholder="Filtrar por Precio">
+
+    <i class="fa-solid fa-dollar-sign" style="color: #cec0c0;"></i>
   </div>
   <table>
     <thead>
@@ -29,7 +32,6 @@
     <tbody>
       {% for servicio in object_list %}
       <tr>
-        
         <td>{{ servicio.nombre }}</td>
         <td>{{ servicio.descripcion }}</td>
         <td>{{ servicio.precio }}</td>
@@ -37,31 +39,24 @@
         <td>{{ servicio.productos_asociados }}</td>
         <td>
           <a href="{% url 'taller:modificar_servicio' servicio.pk %}"><button id="boton1">Modificar</button></a>
-          <a href="{%url 'taller:eliminar_servicio' servicio.pk %}"><button id="boton2">Eliminar</button></a>
+          <a href="{% url 'taller:eliminar_servicio' servicio.pk %}"><button id="boton2">Eliminar</button></a>
         </td>
-        </tr>
-        {% empty %}
-        <tr>
+      </tr>
+      {% empty %}
+      <tr>
         <td colspan="6">No hay servicios registrados.</td>
-        </tr>
-        {% endfor %}
-        </tbody>
-        
-          </table>
-          <div id="no-results" class="no-results" style="display:none;">Servicio no encontrado</div>
-          <br>
-          <br>
-          <a href="{% url 'taller:registrar_servicio' %}"><button id="boton3">Registrar nuevo servicio</button></a>
-<br>
-<br>
-
-
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  <div id="no-results" class="no-results" style="display:none;">Servicio no encontrado</div>
+  <br>
+  <br>
+  <a href="{% url 'taller:registrar_servicio' %}"><button id="boton3">Registrar nuevo servicio</button></a>
+  <br>
+  <br>
 {% endblock %}
 
 {% block js %}
-
-
-<script src="/static/js/servicio/filtro_servicios.js"></script>
-
-
+  <script src="{% static 'js/servicio/filtro_servicios.js' %}"></script>
 {% endblock js %}

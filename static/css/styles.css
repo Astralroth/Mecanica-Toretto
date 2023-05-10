@@ -351,3 +351,8 @@ textarea {
   margin-left: 8px;
   color: #555; /* Ajusta el color según tus necesidades */
 }
+
+
+#filtro-precio{
+  margin-bottom: 20px;
+}

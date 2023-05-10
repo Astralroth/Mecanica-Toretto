@@ -12,6 +12,7 @@ class ServicioCreateView(CreateView):
     fields = ['nombre', 'descripcion', 'precio', 'tiempo_estimado', 'productos_asociados']
     success_url = reverse_lazy('taller:listar_servicios')
 
+
 class ServicioUpdateView(UpdateView):
     model = Servicio
     template_name = 'servicio/modificar_servicio.html' 
@@ -22,3 +23,5 @@ class ServicioDeleteView(DeleteView):
     model = Servicio
     template_name = 'servicio/eliminar_servicio.html'  
     success_url = reverse_lazy('taller:listar_servicios')
+
+
