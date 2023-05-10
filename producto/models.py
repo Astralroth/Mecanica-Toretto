@@ -1,6 +1,7 @@
 from django.db import models
 
 
+
 estado_producto = [
     [0, "Nuevo"],
     [1, "Usado"],
@@ -33,7 +34,20 @@ class Provider(models.Model):
     def __str__(self):
         return f'{self.nombre}'
 
+class producto_boleta(models.Model):
+    id = models.AutoField(primary_key=True)
+    nombre = models.CharField(max_length=100)     
+    cantidad = models.PositiveIntegerField()     
+    precio = models.DecimalField(max_digits=8, decimal_places=2)     
+    fecha = models.DateField(auto_now_add=True)     
+    cliente = models.CharField(max_length=100)     
+    direccion = models.CharField(max_length=200)     
+    subtotal = models.DecimalField(max_digits=8, decimal_places=2)     
+    impuesto = models.DecimalField(max_digits=8, decimal_places=2)     
+    total = models.DecimalField(max_digits=8, decimal_places=2)      
 
+    def str(self):         
+        return self.nombre
 
 
 

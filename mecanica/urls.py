@@ -17,6 +17,7 @@ from django.contrib import admin
 from django.shortcuts import HttpResponseRedirect
 from django.urls import include, path
 from django.contrib.auth.views import LoginView, LogoutView
+from producto import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -26,7 +27,7 @@ urlpatterns = [
     path('', lambda request: HttpResponseRedirect('auth/login')),
     path('prod/', include("producto.urls")),
     path('serv/', include("servicio.urls")),
-    
+    path('factura/<int:producto_id>/', views.generar_factura, name='generar_factura'),
 ]
 
 

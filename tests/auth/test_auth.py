@@ -2,7 +2,7 @@ import pytest
 from django.test.client import Client
 from django.contrib.auth.models import User
 
-class TestAuthClass:
+class AuthClass:
     
     def setup_method(self):
         print("Setting up test environment")

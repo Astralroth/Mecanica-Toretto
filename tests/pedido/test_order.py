@@ -3,11 +3,11 @@ from django.test.client import Client
 
 from pedido.models import Product
 
-from ..auth.test_auth import TestAuthClass
+from ..auth.test_auth import AuthClass
 from django.contrib.auth.models import User
 
 # Create your tests here.
-class TestOrderClass(TestAuthClass):
+class TestOrderClass(AuthClass):
     
     def setup_method(self):
         print("Setting up test environment")
@@ -15,9 +15,12 @@ class TestOrderClass(TestAuthClass):
         # Create a test products
         products = Product.objects.create(name="Aceite para Motor")
 
+    @pytest.fixture(scope="function", autouse=True)
+    def login(self, client: Client):
+        self.test_can_login(client)
+
     @pytest.mark.django_db
     def test_can_create_order(self, client: Client):
-        self.test_can_login(client)
         # User can create a new order
         response = client.post("/order/add", {"action":"addOrder", "data": '[{"name":"test"}, [{"name":"Aceite para Motor", "quantity":1}]]'})
         assert response.status_code == 200
@@ -25,7 +28,6 @@ class TestOrderClass(TestAuthClass):
     # create a test to create a order wrong
     @pytest.mark.django_db
     def test_can_create_order_wrong(self, client: Client):
-        self.test_can_login(client)
         # User can create a new order
         response = client.post("/order/add", {"action":"addOrder", "data": '[{"name":"test"}, [{"name":"Aceite para Motor", "quantity":-1}]]'})
         assert response.status_code == 200
@@ -38,7 +40,6 @@ class TestOrderClass(TestAuthClass):
     # create a test to check if the user can edit an order
     @pytest.mark.django_db
     def test_can_edit_order(self, client: Client):
-        self.test_can_login(client)
         # User can create a new order
         response = client.post("/order/add", {"action":"addOrder", "data": '[{"name":"test"}, [{"name":"Aceite para Motor", "quantity":1}]]'})
         assert response.status_code == 200
@@ -56,7 +57,6 @@ class TestOrderClass(TestAuthClass):
     # create a test to check if the user can write 100 words in the order name
     @pytest.mark.django_db
     def test_can_write_100_words_in_order_name(self, client: Client):
-        self.test_can_login(client)
         
         name = 'a'*100
         
@@ -72,7 +72,6 @@ class TestOrderClass(TestAuthClass):
     # create a tes to check if the user can order more than 20 quantities of a product
     @pytest.mark.django_db
     def test_can_order_more_than_20_quantities_of_a_product(self, client: Client):
-        self.test_can_login(client)
         
         # User can create a new order
         response = client.post("/order/add", {"action":"addOrder", "data": '[{"name":"test"}, [{"name":"Aceite para Motor", "quantity":21}]]'})
@@ -86,7 +85,6 @@ class TestOrderClass(TestAuthClass):
     # create a test to check if the user can order negative quantities of a product
     @pytest.mark.django_db
     def test_can_order_negative_quantities_of_a_product(self, client: Client):
-        self.test_can_login(client)
         
         # User can create a new order
         response = client.post("/order/add", {"action":"addOrder", "data": '[{"name":"test"}, [{"name":"Aceite para Motor", "quantity":-1}]]'})
