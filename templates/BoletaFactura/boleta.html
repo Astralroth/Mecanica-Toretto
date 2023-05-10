@@ -1,0 +1,8 @@
+{% for producto in productos %}
+    <tr>
+        <td>{{ producto.nombre }}</td>
+        <td>{{ producto.cantidad }}</td>
+        <td>{{ producto.precio }}</td>
+        <td><a href="{% url 'generar_factura' producto_id=producto.id %}" class="btn btn-primary">Generar factura</a></td>
+    </tr>
+{% endfor %}

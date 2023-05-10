@@ -2,6 +2,7 @@ from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 from .models import Servicio
 
+
 class ServicioListView(ListView):
     model = Servicio
     template_name = 'servicio_list.html'
@@ -22,3 +23,4 @@ class ServicioDeleteView(DeleteView):
     model = Servicio
     template_name = 'servicio/eliminar_servicio.html'  
     success_url = reverse_lazy('taller:listar_servicios')
+

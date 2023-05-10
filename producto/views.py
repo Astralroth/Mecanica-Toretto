@@ -1,14 +1,17 @@
 import json
+from .models import producto_boleta
+from reportlab.pdfgen import canvas
 from django.shortcuts import render
 from producto.models import Product, Provider
 from producto.forms import ProductForm
-from django.http import HttpRequest, JsonResponse
+from django.http import HttpRequest, JsonResponse, HttpResponse
 from django.urls import reverse
 from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_exempt
 from django.views.generic import TemplateView
 from django.core.serializers import serialize
 from django.contrib.auth.decorators import login_required
+
 
 # Create your views here.
 
@@ -34,7 +37,8 @@ def ProductFormView(request):
 )
 class ProductListView(TemplateView):
     template_name = "producto/Listado.html"
-    
+
+#Boleta 
     def post(self, request: HttpRequest):
         action = request.POST["action"]
         if action == "getData":
@@ -88,3 +92,39 @@ class ProductListView(TemplateView):
         context = super().get_context_data(**kwargs)
         context["form"] = ProductForm()
         return context
+
+def generar_factura(request, producto_id):
+    # Obtenemos la información del producto a través de su ID
+    producto = producto_boleta.objects.get(id=producto_id)
+
+    # Creamos un objeto HttpResponse con el tipo de contenido correcto
+    response = HttpResponse(content_type='application/pdf')
+    response['Content-Disposition'] = 'attachment; filename="factura{}.pdf"'.format(producto.id)
+
+    # Creamos el objeto PDF, usando el objeto HttpResponse como su "archivo".
+    p = canvas.Canvas(response)
+
+    # Agregamos el encabezado de la factura
+    p.setFont("Helvetica-Bold", 24)
+    p.drawCentredString(300, 700, "Factura")
+
+    # Agregamos la información del producto
+    p.setFont("Helvetica", 12)
+    p.drawString(50, 650, "Nombre del producto: {}".format(producto.nombre))
+    p.drawString(50, 625, "Cantidad: {}".format(producto.cantidad))
+    p.drawString(50, 600, "Precio: {}".format(producto.precio))
+    p.drawString(50, 575, "Fecha: {}".format(producto.fecha))
+
+    # Agregamos la información del cliente
+    p.drawString(50, 525, "Cliente: {}".format(producto.cliente))
+    p.drawString(50, 500, "Dirección: {}".format(producto.direccion))
+
+    # Agregamos los totales
+    p.drawString(50, 450, "Subtotal: {}".format(producto.subtotal))
+    p.drawString(50, 425, "Impuesto: {}".format(producto.impuesto))
+    p.drawString(50, 400, "Total: {}".format(producto.total))
+
+    # Cerramos el objeto PDF limpiamente y terminamos la respuesta del objeto HttpResponse.
+    p.showPage()
+    p.save()
+    return response
