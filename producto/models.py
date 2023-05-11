@@ -38,13 +38,13 @@ class producto_boleta(models.Model):
     id = models.AutoField(primary_key=True)
     nombre = models.CharField(max_length=100)     
     cantidad = models.PositiveIntegerField()     
-    precio = models.DecimalField(max_digits=8, decimal_places=2)     
+    precio = models.DecimalField(max_digits=8, decimal_places=0)     
     fecha = models.DateField(auto_now_add=True)     
     cliente = models.CharField(max_length=100)     
     direccion = models.CharField(max_length=200)     
-    subtotal = models.DecimalField(max_digits=8, decimal_places=2)     
-    impuesto = models.DecimalField(max_digits=8, decimal_places=2)     
-    total = models.DecimalField(max_digits=8, decimal_places=2)      
+    subtotal = models.DecimalField(max_digits=8, decimal_places=0)     
+    impuesto = models.DecimalField(max_digits=8, decimal_places=0)     
+    total = models.DecimalField(max_digits=8, decimal_places=0)      
 
     def str(self):         
         return self.nombre
