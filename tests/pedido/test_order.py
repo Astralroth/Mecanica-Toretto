@@ -1,7 +1,7 @@
 import pytest
 from django.test.client import Client
 
-from pedido.models import Product
+from pedido.models import Order, Product
 
 from ..auth.test_auth import AuthClass
 from django.contrib.auth.models import User
@@ -24,6 +24,9 @@ class TestOrderClass(AuthClass):
         # User can create a new order
         response = client.post("/order/add", {"action":"addOrder", "data": '[{"name":"test"}, [{"name":"Aceite para Motor", "quantity":1}]]'})
         assert response.status_code == 200
+        # validate the order was created
+        order = Order.objects.count()
+        assert order == 1
     
     # create a test to create a order wrong
     @pytest.mark.django_db
@@ -36,6 +39,9 @@ class TestOrderClass(AuthClass):
         assert response.json()['status'] == 'Error'
         # validate the response message is correct
         assert response.json()['message'] == 'La cantidad de productos no puede ser negativa'
+        # validate the order was not created
+        order = Order.objects.count()
+        assert order == 0
 
     # create a test to check if the user can edit an order
     @pytest.mark.django_db
