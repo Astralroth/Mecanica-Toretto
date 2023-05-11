@@ -47,13 +47,13 @@ class TestRegistroClass(AuthClass):
         assert response.status_code == 200
         #validate if the response is not an error 
         #if the response is an error, tets will fail
-        assert response.json()['status'] == 'Correct'
+        assert response.json()['status'] == 'CORRECT'
         #confirm the register has been edited 
         response = client.post("/product/list", {"action":"getData"})
         print(response.json())
         assert response.json(['data'][0]['json'] == [{'nombre':'Motor de 8 Cilindros', 'precio':'250000', 'estado':'De fabrica'}])
 
-    #Create a test to check if the user can write 70 words in the register name
+    #Create a test to check if the user can write 100 words in the register name
     @pytest.mark.django_db 
     def test_can_write_70_words_in_order_name(self, client: Client):
         
@@ -63,4 +63,9 @@ class TestRegistroClass(AuthClass):
         #user can create a new register 
         response = client.post("/product/add", {"action" : "addProduct", "data": '[{"nombre"}:{"'+name+'"}, [{"nombre":"test"},{"precio"}:{"120000"},[{"estado"}:{"nuevo"}]]]'})
         assert response.status_code == 200
+        #validate if the response is an error, the test will fail
+        assert response.json()['status'] == 'ERROR'
+        #Validate the response messege is correct
+        assert response.json()['message'] == 'El nombre del pedido no puede ser mayor a 50 caracteres'
+
         
