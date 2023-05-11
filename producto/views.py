@@ -1,6 +1,6 @@
 import json
 from .models import producto_boleta
-from reportlab.pdfgen import canvas
+from reportlab.pdfgen.canvas import Canvas
 from django.shortcuts import render
 from producto.models import Product, Provider
 from producto.forms import ProductForm
@@ -102,7 +102,7 @@ def generar_factura(request, producto_id):
     response['Content-Disposition'] = 'attachment; filename="factura{}.pdf"'.format(producto.id)
 
     # Creamos el objeto PDF, usando el objeto HttpResponse como su "archivo".
-    p = canvas.Canvas(response)
+    p = Canvas(response)
 
     # Agregamos el encabezado de la factura
     p.setFont("Helvetica-Bold", 24)

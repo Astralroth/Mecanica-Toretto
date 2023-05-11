@@ -10,7 +10,8 @@ from django.views.generic import TemplateView
 
 from pedido.forms import OrderCreationForm
 
-from .models import Order, Product
+from .models import Order
+from producto.models import Product
 
 # Create your views here.
 # @method_decorator(
@@ -63,7 +64,7 @@ class OrderListView(TemplateView):
             
             dataProd = []
             for i in range(0, allProds.__len__()):
-                dataProd.append(prods_v[i]["fields"]['name'])
+                dataProd.append(prods_v[i]["fields"]['nombre'])
             
             print(dataProd)
             response['products']=dataProd
