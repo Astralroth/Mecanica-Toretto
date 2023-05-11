@@ -32,7 +32,7 @@ def ProductFormView(request):
     return render(request, "producto/registro.html",data)
 
 @method_decorator(
-    [csrf_exempt, login_required(redirect_field_name="addOrder", login_url="login")],
+    [csrf_exempt, login_required(redirect_field_name="listProduct", login_url="login")],
     name="dispatch",
 )
 class ProductListView(TemplateView):
@@ -84,7 +84,7 @@ class ProductListView(TemplateView):
             prod.estado = json_v[1]["estado"]
             prod.save()
             print(f'Prod: {prod}')
-            return JsonResponse({"status": "Correcto", "message": "Se ha editado el pedido correctamente"})
+            return JsonResponse({"status": "Correcto", "message": "Se ha registrado el producto correctamente"})
         else:
             return JsonResponse({"status":"Error","error": "No se ha encontrado la acción solicitada"})
     

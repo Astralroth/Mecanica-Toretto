@@ -5,7 +5,7 @@ from django.db import models
 estado_producto = [
     [0, "Nuevo"],
     [1, "Usado"],
-    [3, "De fabrica"]
+    [2, "De fabrica"]
 ]
 
 
