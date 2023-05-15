@@ -10,7 +10,7 @@ from django.views.generic import TemplateView
 
 from pedido.forms import OrderCreationForm
 
-from .models import Order
+from pedido.models import Order
 from producto.models import Product
 
 # Create your views here.
@@ -41,13 +41,63 @@ def validate(json_v: dict):
     [csrf_exempt, login_required(redirect_field_name="listOrder", login_url="login")],
     name="dispatch",
 )
-class OrderListView(TemplateView):
+class OrderListAllView(TemplateView):
     template_name = "pedido/list_order.html"
 
     def post(self, request: HttpRequest):
         action = request.POST["action"]
         if action == "getData":
-            productos = Order.objects.filter(user=request.user)
+            productos = Order.objects.all()
+            parsed: dict = serialize("json", productos)
+            json_v = json.loads(parsed)
+
+            data = []
+            for i in range(0, productos.__len__()):
+                json_v[i]["fields"]["id"] = json_v[i]["pk"]
+                data.append(json_v[i]["fields"])
+            
+            response = {"data": data}
+            
+            allProds = Product.objects.all()
+            parsedProds: dict = serialize("json", allProds)
+            prods_v = json.loads(parsedProds)
+            
+            dataProd = []
+            for i in range(0, allProds.__len__()):
+                dataProd.append(prods_v[i]["fields"]['nombre'])
+            
+            print(dataProd)
+            response['products']=dataProd
+            return JsonResponse(response, safe=False)
+        elif action == "edit":
+            print("Editing row")
+            data: str = request.POST["data"]
+            json_v = json.loads(data)
+            id = json_v[0]["value"]
+            producto = Order.objects.get(id=id)
+            producto.json = json_v[1]
+
+            producto.save()
+            return JsonResponse({"status": "Correct"})
+        else:
+            return JsonResponse({"error": "No se ha encontrado la acción solicitada"})
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["form"] = OrderCreationForm()
+        return context
+
+@method_decorator(
+    [csrf_exempt, login_required(redirect_field_name="listOrder", login_url="login")],
+    name="dispatch",
+)
+class OrderListOneView(TemplateView):
+    template_name = "pedido/list_order.html"
+
+    def post(self, request: HttpRequest, pk: int):
+        action = request.POST["action"]
+        if action == "getData":
+            productos = Order.objects.filter(user=pk)
             parsed: dict = serialize("json", productos)
             json_v = json.loads(parsed)
 
