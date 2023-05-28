@@ -18,16 +18,17 @@ from django.shortcuts import HttpResponseRedirect
 from django.urls import include, path
 from django.contrib.auth.views import LoginView, LogoutView
 from producto import views
+from .views import IndexView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('order/', include("pedido.urls")),
     path('auth/login', LoginView.as_view(), name="login"),
     path('auth/logout', LogoutView.as_view(), name="logout"),
-    path('', lambda request: HttpResponseRedirect('auth/login')),
     path('prod/', include("producto.urls")),
     path('serv/', include("servicio.urls")),
     path('factura/<int:producto_id>/', views.generar_factura, name='generar_factura'),
+    path('', IndexView.as_view(), name="index"),
 ]
 
 
