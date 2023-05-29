@@ -1,83 +1,97 @@
 {% load static %}
 <!-- header -->
 <header>
-    <div class="header">
-       <div class="container-fluid">
-          <div class="row">
-             <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col logo_section">
-                <div class="full">
-                   <div class="center-desk">
-                      <p >Los Torettos</p>
-                   </div>
-                </div>
-             </div>
-             <div class="col-xl-9 col-lg-9 col-md-9 col-sm-9">
-                <nav class="navigation navbar navbar-expand-md navbar-dark ">
-                   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
-                   <span class="navbar-toggler-icon"></span>
-                   </button>
-                   <div class="collapse navbar-collapse" id="navbarsExample04">
-                      <ul class="navbar-nav mr-auto">
-                         {% if user.is_authenticated %}
-                         <li class="nav-item">
-                            <p class="nav-link" style="margin-bottom: 0px;">Bienvenid@ {{ user.name }}</p>
-                            <p style="display:none;" id="emailusuario">{{ user.email }}</p>
-                            <div id="udata" pkusuario="{{ user.pk }}" style="display:none"></div>
-                         </li>
-                         {% endif %}
-                         <li class="nav-item">
-                            <a class="nav-link" href="{% url 'index' %}"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-house-fill" viewBox="0 0 16 16">
-                              <path d="M8.707 1.5a1 1 0 0 0-1.414 0L.646 8.146a.5.5 0 0 0 .708.708L8 2.207l6.646 6.647a.5.5 0 0 0 .708-.708L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.707 1.5Z"/>
-                              <path d="m8 3.293 6 6V13.5a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 13.5V9.293l6-6Z"/>
-                            </svg></a>
-                         </li>
-                         <li class="nav-item">
-                          {% if request.user.is_staff %}
+   <div class="header">
+      <div class="container-fluid">
+         <div class="row">
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col logo_section">
+               <div class="full">
+                  <div class="center-desk">
+                     <p>Los Torettos</p>
+                  </div>
+               </div>
+            </div>
+            <div class="col-xl-9 col-lg-9 col-md-9 col-sm-9">
+               <nav class="navigation navbar navbar-expand-md navbar-dark ">
+                  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample04"
+                     aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
+                     <span class="navbar-toggler-icon"></span>
+                  </button>
+                  <div class="collapse navbar-collapse" id="navbarsExample04">
+                     <ul class="navbar-nav mr-auto">
+                        {% if user.is_authenticated %}
+                        <li class="nav-item">
+                           <p class="nav-link" style="margin-bottom: 0px;">Bienvenid@ {{ user.name }}</p>
+                           <p style="display:none;" id="emailusuario">{{ user.email }}</p>
+                           <div id="udata" pkusuario="{{ user.pk }}" style="display:none"></div>
+                        </li>
+                        {% endif %}
+                        <li class="nav-item">
+                           <a class="nav-link" href="{% url 'index' %}"><svg xmlns="http://www.w3.org/2000/svg"
+                                 width="20" height="20" fill="currentColor" class="bi bi-house-fill"
+                                 viewBox="0 0 16 16">
+                                 <path
+                                    d="M8.707 1.5a1 1 0 0 0-1.414 0L.646 8.146a.5.5 0 0 0 .708.708L8 2.207l6.646 6.647a.5.5 0 0 0 .708-.708L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.707 1.5Z" />
+                                 <path d="m8 3.293 6 6V13.5a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 13.5V9.293l6-6Z" />
+                              </svg></a>
+                        </li>
+                        <li class="nav-item">
+                           {% if request.user.is_staff %}
                            <a class="nav-link" id="empleado" href="#">Perfil Empleado</a>
                            {% else %}
                            <a class="nav-link" href="#">Perfil Cliente</a>
+                           {% endif %}
                         </li>
-                          {% endif %}
-                          <li class="nav-item">
+                        <li class="nav-item">
                            {% if request.user.is_staff %}
                            <a class="nav-link" href="#">Horas reservadas</a>
                            {% else %}
                            <a class="nav-link" href="#">Agendar Horas</a>
-                        </li>
                            {% endif %}
-                        <li class="nav-item">
-                           {% if request.user.is_staff %}
-                           <a class="nav-link" href="prod/">Producto</a>
-                           {% else %}
-                           <a class="nav-link" href="prod/add">Registrar Producto</a>
                         </li>
-                           {% endif %}
-                        <li class="nav-item">  
-                           {% if request.user.is_staff %}
-                           <a class="nav-link" href="serv/">Servicios</a>
-                           {% else %}
-                           <a class="nav-link" href="#">Servicios</a>
-                        </li>
-                           {% endif %}
-                         <li class="nav-item active d_none">
-                            {% if user.is_authenticated %}
-                            <a class="nav-link" id="logout" href="{% url 'logout' %}"> <i class="fas fa-user-alt mr-1 text-gray"></i>Cerrar Sesión</a>
-                            {% else %}
-                            <a class="nav-link" href="{% url 'login' %}">Iniciar Sesión</a>
-                            {% endif %}
+                        <li class="nav-item dropdown">
+                           <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                             Producto
+                           </a>
+                           <ul class="dropdown-menu">
+                             <li><a class="dropdown-item" href="{% url 'addProduct' %}">Añadir</a></li>
+                             <li><hr class="dropdown-divider"></li>
+                             <li><a class="dropdown-item" href="{% url 'listProduct' %}">Listar</a></li>
+                           </ul>
                          </li>
-                      </ul>
-                   </div>
-                </nav>
-             </div>
-          </div>
-       </div>
-       {% if messages %}
-       <div style="display: flex;justify-content: center;" id="message">
-          {% for message in messages %}
-          <p class="alert alert-info" style="position: absolute;">{{ message }}</p>
-          {% endfor %}
-       </div>
-       {% endif %}
-    </div>
- </header>
+                         <li class="nav-item dropdown">
+                           <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                             Servicio
+                           </a>
+                           <ul class="dropdown-menu">
+                             <li><a class="dropdown-item" href="{% url 'registrar_servicio' %}">Añadir</a></li>
+                             <li><hr class="dropdown-divider"></li>
+                             <li><a class="dropdown-item" href="{% url 'listar_servicios' %}">Listar</a></li>
+                           </ul>
+                         </li>
+                        </li>
+                     </ul>
+                     <ul class="navbar-nav">
+                        <li class="nav-item">
+                           {% if user.is_authenticated %}
+                           <a class="nav-link" id="logout" href="{% url 'logout' %}"> <i
+                                 class="fas fa-user-alt mr-1 text-gray"></i>Cerrar Sesión</a>
+                           {% else %}
+                           <a class="nav-link" href="{% url 'login' %}">Iniciar Sesión</a>
+                           {% endif %}
+                        </li>
+                     </ul>
+                  </div>
+               </nav>
+            </div>
+         </div>
+      </div>
+      {% if messages %}
+      <div style="display: flex;justify-content: center;" id="message">
+         {% for message in messages %}
+         <p class="alert alert-info" style="position: absolute;">{{ message }}</p>
+         {% endfor %}
+      </div>
+      {% endif %}
+   </div>
+</header>
