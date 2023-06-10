@@ -38,8 +38,8 @@
         <td>{{ servicio.tiempo_estimado }}</td>
         <td>{{ servicio.productos_asociados }}</td>
         <td>
-          <a href="{% url 'taller:modificar_servicio' servicio.pk %}"><button id="boton1">Modificar</button></a>
-          <a href="{% url 'taller:eliminar_servicio' servicio.pk %}"><button id="boton2">Eliminar</button></a>
+          <a href="{% url 'modificar_servicio' servicio.pk %}"><button id="boton1">Modificar</button></a>
+          <a href="{% url 'eliminar_servicio' servicio.pk %}"><button id="boton2">Eliminar</button></a>
         </td>
       </tr>
       {% empty %}
@@ -52,7 +52,7 @@
   <div id="no-results" class="no-results" style="display:none;">Servicio no encontrado</div>
   <br>
   <br>
-  <a href="{% url 'taller:registrar_servicio' %}"><button id="boton3">Registrar nuevo servicio</button></a>
+  <a href="{% url 'registrar_servicio' %}"><button id="boton3">Registrar nuevo servicio</button></a>
   <br>
   <br>
 {% endblock %}
