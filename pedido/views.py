@@ -157,7 +157,7 @@ class OrderCreateView(TemplateView):
             
             dataProd = []
             for i in range(0, allProds.__len__()):
-                dataProd.append(prods_v[i]["fields"]['name'])
+                dataProd.append(prods_v[i]["fields"]['nombre'])
             
             response['products']=dataProd
             return JsonResponse(response, safe=False)

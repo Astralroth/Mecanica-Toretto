@@ -57,7 +57,6 @@ class Servicio(models.Model):
 class Boleta(models.Model):
     id = models.AutoField(primary_key=True)
     service = models.ForeignKey('Servicio', on_delete=models.CASCADE)
-    order = models.ForeignKey('core.Order', on_delete=models.CASCADE, null=True)
     fecha = models.DateField(auto_now_add=True)     
     firstname = models.CharField(max_length=50)
     lastname = models.CharField(max_length=50)

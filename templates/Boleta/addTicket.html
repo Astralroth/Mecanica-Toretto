@@ -18,12 +18,41 @@
         <div class="card-body">
             <form action="#" method="POST" id="modalForm">
                 {% csrf_token %}
-                {% for i in form %}
                 <div class="form-group">
-                    <label for="{{i.id_for_label}}">{{i.label}}</label>
-                    {% render_field i class+="form-control" %}
+                    <label for="{{form.service.id_for_label}}">{{form.service.label}}</label>
+                    <div class="required">
+                        {% render_field form.service %}
+                    </div>
                 </div>
-                {% endfor %}
+                <div class="form-group">
+                    <label for="{{form.firstname.id_for_label}}">{{form.firstname.label}}</label>
+                    {% render_field form.firstname class+="form-control" %}
+                </div>
+                <div class="form-group">
+                    <label for="{{form.lastname.id_for_label}}">{{form.lastname.label}}</label>
+                    {% render_field form.lastname class+="form-control" %}
+                </div>
+                <div class="form-group">
+                    <label for="{{form.run.id_for_label}}">{{form.run.label}}</label>
+                    {% render_field form.run class+="form-control" %}
+                </div>
+                <div class="form-group">
+                    <label for="{{form.tipo.id_for_label}}">{{form.tipo.label}}</label>
+                    {{form.tipo}}
+                </div>
+                <div class="form-group">
+                    <label for="{{form.subtotal.id_for_label}}">{{form.subtotal.label}}</label>
+                    {% render_field form.subtotal class+="form-control" %}
+                </div>
+                <div class="form-group">
+                    <label for="{{form.impuesto.id_for_label}}">{{form.impuesto.label}}</label>
+                    {% render_field form.impuesto class+="form-control" %}
+                </div>
+                <div class="form-group">
+                    <label for="{{form.total.id_for_label}}">{{form.total.label}}</label>
+                    {% render_field form.total class+="form-control" %}
+                </div>
+
                 <div class="card-footer">
                     <button type="submit" class="btn btn-primary btn-flat btn-block" id="submitButton"><i
                             class="fas fa-save"></i>
@@ -50,5 +79,4 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/js/all.min.js"
     integrity="sha512-6PM0qYu5KExuNcKt5bURAoT6KCThUmHRewN3zUFNaoI6Di7XJPTMoT6K0nsagZKk2OB4L7E3q1uQKHNHd4stIQ=="
     crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<script src="{% static 'js/pedido/regOrder.js' %}"></script>
 {% endblock js %}
