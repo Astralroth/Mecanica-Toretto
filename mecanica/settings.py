@@ -25,15 +25,13 @@ SECRET_KEY = 'django-insecure-iwi)ddsk7z6s&9w5dqva#w-wt3!l56@hri)kb0!xqdnj1%ud5e
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
 
 INSTALLED_APPS = [
-    'servicio',
-    'pedido',
-    'producto',
+    'core',
     'widget_tweaks',
     'django.contrib.admin',
     'django.contrib.auth',

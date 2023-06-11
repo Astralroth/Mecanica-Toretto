@@ -10,8 +10,8 @@ from django.views.generic import TemplateView
 
 from pedido.forms import OrderCreationForm
 
-from pedido.models import Order
-from producto.models import Product
+from core.models import Order
+from core.models import Product
 
 # Create your views here.
 # @method_decorator(
@@ -58,6 +58,7 @@ class OrderListAllView(TemplateView):
             
             response = {"data": data}
             
+            # hasta aqui
             allProds = Product.objects.all()
             parsedProds: dict = serialize("json", allProds)
             prods_v = json.loads(parsedProds)

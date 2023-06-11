@@ -1,6 +1,6 @@
 from django.urls import path
 
-from producto.views import ProductFormView, ProductListView
+from producto.views import ProductFormView, ProductListView\
 
 from . import views
 

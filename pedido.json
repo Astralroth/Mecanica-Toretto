@@ -1,6 +1,6 @@
 [
     {
-        "model": "pedido.order",
+        "model": "core.order",
         "pk": 1,
         "fields": {
             "user": 1,
@@ -29,7 +29,7 @@
         }
     },
     {
-        "model": "pedido.order",
+        "model": "core.order",
         "pk": 2,
         "fields": {
             "user": 1,
@@ -54,7 +54,7 @@
         }
     },
     {
-        "model": "producto.product",
+        "model": "core.product",
         "pk": 1,
         "fields": {
             "nombre": "Liquido Refrigerante",
@@ -67,7 +67,7 @@
         }
     },
     {
-        "model": "producto.product",
+        "model": "core.product",
         "pk": 2,
         "fields": {
             "nombre": "Perno 2 1/4",
@@ -80,7 +80,7 @@
         }
     },
     {
-        "model": "producto.product",
+        "model": "core.product",
         "pk": 3,
         "fields": {
             "nombre": "Liquido para Frenos",
@@ -93,7 +93,7 @@
         }
     },
     {
-        "model": "producto.product",
+        "model": "core.product",
         "pk": 4,
         "fields": {
             "nombre": "Aceite para Motor",

@@ -1,8 +1,7 @@
 import json
-from .models import producto_boleta
 from reportlab.pdfgen.canvas import Canvas
 from django.shortcuts import render
-from producto.models import Product, Provider
+from core.models import Product, Provider, Boleta
 from producto.forms import ProductForm
 from django.http import HttpRequest, JsonResponse, HttpResponse
 from django.urls import reverse
@@ -95,7 +94,7 @@ class ProductListView(TemplateView):
 
 def generar_factura(request, producto_id):
     # Obtenemos la información del producto a través de su ID
-    producto = producto_boleta.objects.get(id=producto_id)
+    producto = Boleta.objects.get(id=producto_id)
 
     # Creamos un objeto HttpResponse con el tipo de contenido correcto
     response = HttpResponse(content_type='application/pdf')
