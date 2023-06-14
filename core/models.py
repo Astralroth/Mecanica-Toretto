@@ -45,6 +45,7 @@ class Product(models.Model):
         return f"{self.nombre}"
 
 class Servicio(models.Model):
+    id = models.AutoField(primary_key=True)
     nombre = models.CharField(max_length=100)
     descripcion = models.TextField()
     precio = models.DecimalField(max_digits=22, decimal_places=0)
@@ -53,14 +54,14 @@ class Servicio(models.Model):
 
     def __str__(self):
         return self.nombre
-    
+
 class Boleta(models.Model):
     id = models.AutoField(primary_key=True)
     service = models.ForeignKey('Servicio', on_delete=models.CASCADE)
     fecha = models.DateField(auto_now_add=True)     
     firstname = models.CharField(max_length=50)
-    lastname = models.CharField(max_length=50)
-    run = models.CharField(max_length=8)
+    lastname = models.CharField(max_length=50, blank=True, null=True)
+    run = models.CharField(max_length=10)
     subtotal = models.DecimalField(max_digits=8, decimal_places=0)     
     impuesto = models.DecimalField(max_digits=8, decimal_places=0)     
     total = models.DecimalField(max_digits=8, decimal_places=0)      

@@ -1,5 +1,6 @@
 from django import forms
-from core.models import Boleta, Servicio
+from core.models import Servicio
+from django.shortcuts import get_object_or_404
 
 
 class ServicioForm(forms.ModelForm):
@@ -15,19 +16,12 @@ class ServicioForm(forms.ModelForm):
 
 
 class CreationTicketForm(forms.Form):
-    service = forms.MultipleChoiceField(
-        widget=forms.CheckboxSelectMultiple(),
-        choices=Servicio.objects.all().values_list("id", "nombre"),
-        required=True,
-    )
-
-    firstname = forms.CharField(max_length=50, required=False)
-    lastname = forms.CharField(max_length=50, required=False)
-    run = forms.CharField(max_length=8, required=False)
-
-    tipo = forms.ChoiceField(
-        choices=[("boleta", "Boleta"), ("factura", "Factura")], required=True
-    )
+    
+    service = forms.ChoiceField(choices=[("default","-----")], label="Servicio")
+    firstname = forms.CharField(max_length=50, required=False, label="Nombre o Razón Social")
+    lastname = forms.CharField(max_length=50, required=False, label="Apellido")
+    
+    run = forms.CharField(max_length=10, min_length=10, required=True, label="Run / Rut")
 
     # Desactiva subtotal, impuesto y total
     subtotal = forms.DecimalField(disabled=True)
