@@ -8,7 +8,7 @@ from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_exempt
 import json
-
+from datetime import datetime
 
 # Create your views here.
 @method_decorator(
@@ -20,8 +20,10 @@ class SalesView(TemplateView):
 
     def post(self, request: HttpRequest):
         action = request.POST["action"]
-        if action == "getData":
-            productos = Boleta.objects.all()
+        if action == "search_sales":
+            init_date = request.POST.get("init_date", "")
+            end_date = request.POST.get("end_date", "")
+            productos = Boleta.objects.filter(fecha__range=[init_date, end_date])
             parsed: dict = serialize("json", productos)
             json_v = json.loads(parsed)
             
@@ -31,7 +33,6 @@ class SalesView(TemplateView):
                 data.append(json_v[i]["fields"])
 
             response = {"data": data}
-            print(response)
             return JsonResponse(response, safe=False)
         else:
             return JsonResponse({"error": "No se ha encontrado la acción solicitada"})

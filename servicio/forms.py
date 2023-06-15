@@ -17,7 +17,7 @@ class ServicioForm(forms.ModelForm):
 
 class CreationTicketForm(forms.Form):
     
-    service = forms.ChoiceField(choices=[("default","-----")], label="Servicio")
+    service = forms.ChoiceField(required=True, label="Servicio")
     firstname = forms.CharField(max_length=50, required=False, label="Nombre o Razón Social")
     lastname = forms.CharField(max_length=50, required=False, label="Apellido")
     

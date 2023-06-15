@@ -1,9 +1,11 @@
 {
   "dependencies": {
+    "bootstrap-select": "^1.13.18",
     "datatables.net-buttons-dt": "^2.3.6",
     "datatables.net-dt": "^1.13.4",
     "datatables.net-editor-dt": "^2.0.3",
     "datatables.net-select-dt": "^1.6.2",
-    "jquery": "^3.6.4"
+    "jquery": "^3.6.4",
+    "moment": "^2.29.4"
   }
 }
