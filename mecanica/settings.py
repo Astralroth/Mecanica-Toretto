@@ -32,6 +32,14 @@ ALLOWED_HOSTS = ["*"]
 
 INSTALLED_APPS = [
     "core",
+    "web",
+    "user",
+    # Rest Framework (API)
+    'rest_framework',
+    'rest_framework.authtoken',
+    # 3rd party apps
+    'crispy_forms',
+    'corsheaders',
     "widget_tweaks",
     "django.contrib.admin",
     "django.contrib.auth",
@@ -122,6 +130,7 @@ USE_I18N = True
 
 USE_TZ = True
 
+AUTH_USER_MODEL = 'user.User'
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/

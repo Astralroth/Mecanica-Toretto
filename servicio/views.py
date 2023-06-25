@@ -12,7 +12,7 @@ from django.views.decorators.csrf import csrf_exempt
 
 class ServicioListView(ListView):
     model = Servicio
-    template_name = 'servicio_list.html'
+    template_name = 'servicio/servicio_list.html'
 
 class ServicioCreateView(CreateView):
     model = Servicio

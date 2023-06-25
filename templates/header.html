@@ -27,7 +27,7 @@
                         </li>
                         {% endif %}
                         <li class="nav-item">
-                           <a class="nav-link" href="{% url 'index' %}"><svg xmlns="http://www.w3.org/2000/svg"
+                           <a class="nav-link" href="{% url 'inicio' %}"><svg xmlns="http://www.w3.org/2000/svg"
                                  width="20" height="20" fill="currentColor" class="bi bi-house-fill"
                                  viewBox="0 0 16 16">
                                  <path
@@ -37,16 +37,16 @@
                         </li>
                         <li class="nav-item">
                            {% if request.user.is_staff %}
-                           <a class="nav-link" id="empleado" href="#">Perfil Empleado</a>
+                           <a class="nav-link" id="empleado" href="{% url 'empleado' %}">Perfil Empleado</a>
                            {% else %}
-                           <a class="nav-link" href="#">Perfil Cliente</a>
+                           <a class="nav-link" href="{% url 'cliente' %}">Perfil Cliente</a>
                            {% endif %}
                         </li>
                         <li class="nav-item">
                            {% if request.user.is_staff %}
-                           <a class="nav-link" href="#">Horas reservadas</a>
+                           <a class="nav-link" href="{% url 'running_events' %}">Horas reservadas</a>
                            {% else %}
-                           <a class="nav-link" href="#">Agendar Horas</a>
+                           <a class="nav-link" href="{% url 'agenda' %}">Agendar Horas</a>
                            {% endif %}
                         </li>
                         <li class="nav-item dropdown">
@@ -74,10 +74,10 @@
                      <ul class="navbar-nav">
                         <li class="nav-item">
                            {% if user.is_authenticated %}
-                           <a class="nav-link" id="logout" href="{% url 'logout' %}"> <i
+                           <a class="nav-link" id="logout" href="{% url 'signin' %}"> <i
                                  class="fas fa-user-alt mr-1 text-gray"></i>Cerrar Sesión</a>
                            {% else %}
-                           <a class="nav-link" href="{% url 'login' %}">Iniciar Sesión</a>
+                           <a class="nav-link" href="{% url 'signin' %}">Iniciar Sesión</a>
                            {% endif %}
                         </li>
                      </ul>

@@ -4,7 +4,7 @@ from django.db import models
 # Create your models here.
 class Order(models.Model):
     id = models.AutoField(primary_key=True)
-    user = models.ForeignKey("auth.User", on_delete=models.CASCADE)
+    user = models.ForeignKey("user.User", on_delete=models.CASCADE)
     name = models.CharField(max_length=100)
     json = models.JSONField(default={}, blank=True, null=True)
     state = models.CharField(max_length=100, default="Pendiente")
@@ -17,7 +17,7 @@ class Order(models.Model):
 
 class Provider(models.Model):
     id = models.AutoField(primary_key=True)
-    user = models.ForeignKey("auth.User", on_delete=models.CASCADE)
+    user = models.ForeignKey("user.User", on_delete=models.CASCADE)
     nombre = models.CharField(max_length=50, verbose_name="Nombre Proveedor")
     descripcion = models.CharField(max_length=100, verbose_name="Descripcion")
     created_at = models.DateTimeField(auto_now_add=True)

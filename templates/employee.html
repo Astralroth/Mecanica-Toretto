@@ -1,0 +1,96 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+   <head>
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+      <title>Taller Mecanico</title>
+      <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+      <!-- style css -->
+      <link rel="stylesheet" href="{% static 'css/style.css' %}">
+      <link rel="stylesheet" href="{% static 'css/responsive.css' %}">
+      <!-- fevicon -->
+      <link rel="icon" href="{% static 'img/favicon.png' %}" type="image/gif" />
+      <!-- Scrollbar Custom CSS -->
+      <link rel="stylesheet" href="{% static 'css/jquery.mCustomScrollbar.min.css' %}">
+      <!-- Tweaks for older IEs-->
+      <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" />
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen" />
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" 
+      integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+   </head>
+   <!-- body -->
+   <body class="main-layout inner_posituong">
+      <!-- header -->
+      {% include 'header.html' %}
+      <!-- end header inner -->
+      <!-- Body del empleado -->
+      <div class="container">
+         <style>
+            table {
+              border-collapse: collapse;
+              width: 100%;
+              margin-top: 25px;
+              margin-bottom: 25px;
+            }
+            th, td {
+              
+              text-align: left;
+              padding: 8px;
+            }
+            th {
+              background-color: #000;
+              color: white;
+              text-transform: uppercase;
+              font-size: 14px;
+            }
+            td button {
+              background-color: #4CAF50;
+              color: white;
+              border: none;
+              padding: 8px 16px;
+              font-size: 14px;
+              border-radius: 4px;
+              cursor: pointer;
+            }
+            td button:hover {
+              background-color: #3e8e41;
+            }
+          </style>
+          
+          <table>
+            <thead>
+              <tr>
+                <th>Horas Agendadas</th>
+                <th>Orden de Pedido</th>
+                <th>Ver Pedidos en Django</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><a class="btn btn-success" href="{% url 'running_events' %}">Ver Horas Agendadas</a></td>
+                <td><a class="btn btn-success" href="{% url 'addOrder' %}">Realizar Pedido</a></td>
+                <td><a class="btn btn-success" href="{% url 'recepcionOrden' %}">Ver pedidos</a></td>
+              </tr>
+            </tbody>
+          </table>
+      </div>
+      <!--  footer -->
+      {% include 'footer.html' %}
+      <!-- end footer -->
+      <!-- Javascript files-->
+      <script src="{% static 'js/jquery.min.js' %}"></script>
+      <script src="{% static 'js/popper.min.js' %}"></script>
+      <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+      <script src="{% static 'js/jquery-3.0.0.min.js' %}"></script>
+      <!-- sidebar -->
+      <script src="{% static 'js/jquery.mCustomScrollbar.concat.min.js' %}"></script>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" 
+      integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+      <script src="{% static 'js/custom.js' %}"></script>
+      <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+      
+   </body>
+</html>
