@@ -1,4 +1,5 @@
 import json
+from django import http
 
 from django.contrib.auth.decorators import login_required
 from django.core.serializers import serialize
@@ -12,6 +13,8 @@ from pedido.forms import OrderCreationForm
 
 from core.models import Order
 from core.models import Product
+
+from django.shortcuts import redirect
 
 # Create your views here.
 # @method_decorator(
@@ -95,8 +98,9 @@ class OrderListAllView(TemplateView):
 class OrderListOneView(TemplateView):
     template_name = "pedido/list_order.html"
 
-    def post(self, request: HttpRequest, pk: int):
+    def post(self, request: HttpRequest):
         action = request.POST["action"]
+        pk = request.user.id
         if action == "getData":
             productos = Order.objects.filter(user=pk)
             parsed: dict = serialize("json", productos)
@@ -120,6 +124,12 @@ class OrderListOneView(TemplateView):
             print(dataProd)
             response['products']=dataProd
             return JsonResponse(response, safe=False)
+        elif action == "detail":
+            print("Detail row")
+            data: str = request.POST["data"]
+            json_v = json.loads(data)
+            kwargs = {'pk': json_v[0]["value"]}
+            return JsonResponse({"url": reverse("recepcionOrden", kwargs=kwargs)})
         elif action == "edit":
             print("Editing row")
             data: str = request.POST["data"]

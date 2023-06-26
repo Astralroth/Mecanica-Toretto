@@ -43,11 +43,12 @@ function getData(data) {
             render: function (data, type, row, meta) {
                 if (row.estadoss != "Cerrada") {
                     var buttons = ''
-                    buttons += '<btn id="' + meta.row + '" rel="edit" class="btn btn-warning btn-xs btn-flat m-1"><i class="fas fa-edit"></i></btn> ';
+                    buttons += '<btn id="' + row.id + '" rel="edit" class="btn btn-warning btn-xs btn-flat m-1"><i class="fas fa-edit"></i></btn> ';
+                    buttons += '<btn id="' + row.id + '" rel="detail" class="btn btn-info btn-xs btn-flat m-1"><i class="fas fa-info-circle"></i></btn>';
                     return buttons;
                 } else {
                     if (row.estadoss == "Cerrada" && row.usertype == "Administrador") {
-                        var button = '<btn id="' + meta.row + '" rel="enable" class="btn btn-primary btn-xs btn-flat m-1"><i class="fas fa-backward"></i></btn> ';
+                        var button = '<btn id="' + row.id + '" rel="enable" class="btn btn-primary btn-xs btn-flat m-1"><i class="fas fa-backward"></i></btn> ';
                         return button;
                     } else {
                         return '';
@@ -199,6 +200,29 @@ $(function () {
         tblProd.clear()
         tbl.clear()
         tbl.rows.add(con.data['data']).draw()
+    })
+
+    $('btn[rel="detail"]').on('click', (e) => {
+        e.preventDefault()
+        var parameters = []
+        parameters.push({
+            name: 'id',
+            value: e.currentTarget.id
+        })
+
+        var postdata = JSON.stringify(parameters)
+        $.ajax({
+            url: window.location.pathname,
+            type: 'POST',
+            data: {
+                'action': 'detail',
+                'data': postdata
+            },
+            async: false,
+            success: function (data) {
+                window.location.href = data.url
+            }
+        })
     })
 
     $('#modalForm').on('submit', (e) => {

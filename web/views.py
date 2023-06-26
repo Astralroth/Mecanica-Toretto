@@ -21,6 +21,8 @@ import calendar
 from .utils import Calendar
 from django.urls import reverse_lazy, reverse
 from django.views.generic import ListView
+from core.models import Order, Product
+from django.core.serializers import serialize
 
 # Renderizado de Home del portal
 def inicio(SuperUserMixin):
@@ -41,11 +43,11 @@ def loginform(request):
             print('ok')
             form = login(request, user)
             messages.success(request, f' ¡Bienvenido! \n Ya puedes comenzar a utilizar la página')
-            return redirect('web:inicio')
+            return redirect('inicio')
         else:
             print('no se reconoce user')
             messages.info(request, f'No existe el usuario o la contraseña es incorrecta')
-            return redirect('web:loginform')
+            return redirect('loginform')
     elif request.method == 'GET':
         return render(request, 'login.html', {})
 
@@ -53,7 +55,7 @@ def loginform(request):
 @login_required
 def logout(request):
     auth.logout(request)
-    return redirect('web:inicio')
+    return redirect('inicio')
 
 # Renderizado de Formulario de Registro de Usuario del portal
 def registrousuario(request):
@@ -72,11 +74,11 @@ def registrousuario(request):
             form.save()
             print('El usuario se ha creado!')
             messages.success(request, f' ¡El usuario se ha creado! Haz click en Login para ingresar con tu cuenta.')
-            return redirect('web:loginform')
+            return redirect('loginform')
         else:
             print('El usuario NO se ha creado!')
             messages.success(request, f' ¡El usuario NO se ha creado! Revisa los campos requeridos o contraseña no coincide')
-            return redirect('web:registrousuario')
+            return redirect('registrousuario')
 
 # Renderizado de las vistas
 def cliente(request):
@@ -88,15 +90,29 @@ def empleado(request):
 def agenda(request):
     return render(request, 'web/calendar.html', {})
 
-def recepcionOrden(request):
-    Productos = products.objects.all()
-    return render(request, 'viewOrden.html', {'productos': Productos})
+def recepcionOrden(request, pk=None):
+    allOrders = Order.objects.filter(user=request.user,pk=pk)
+    parsedOrders: dict = serialize("json", allOrders)
+    orders_v = json.loads(parsedOrders)
+    listOrders = orders_v[0]['fields']['json']
+    
+    allProductos = Product.objects.all()
+    parsedProductos: dict = serialize("json", allProductos)
+    prods_v = json.loads(parsedProductos)
+    
+    for order in listOrders:
+        for prod in prods_v:
+            if (prod['fields']['nombre']==order['product']):
+                order['price'] = int(prod['fields']['precio'])*int(order['quantity'])
+                break
+    
+    return render(request, 'viewOrden.html', {'productos': listOrders})
     
 def listaCalendario(request):
     return render(request, 'web/listCalendar.html', {})
 
 def running_events(request):
-    return render(request, 'web:running_events', {})
+    return render(request, 'running_events', {})
 
 def guardar_observacion(request):
     if request.method == 'POST':
@@ -105,7 +121,7 @@ def guardar_observacion(request):
         nueva_observacion.save()
         print("Observación guardada:", nueva_observacion)
         print("aa")
-        return redirect('web:recepcionOrden')
+        return redirect('listOneOrder')
     
 #CALENDAR
 
@@ -131,7 +147,7 @@ def next_month(d):
     return month
 
 class CalendarViewNew(LoginRequiredMixin, generic.View):
-    login_url = "web:loginform"
+    login_url = "loginform"
     template_name = "web/calendar.html"
     form_class = EventForm
 
@@ -160,7 +176,7 @@ class CalendarViewNew(LoginRequiredMixin, generic.View):
             form = forms.save(commit=False)
             form.user = request.user
             form.save()
-            return redirect("web:calender")
+            return redirect("calender")
         context = {"form": forms}
         return render(request, self.template_name, context)
     
@@ -218,7 +234,7 @@ def create_event(request):
             start_time=start_time,
             end_time=end_time,
         )
-        return HttpResponseRedirect(reverse("web:calender"))
+        return HttpResponseRedirect(reverse("calender"))
     return render(request, "event.html", {"form": form})
 
 def add_eventmember(request, event_id):
@@ -231,7 +247,7 @@ def add_eventmember(request, event_id):
             if member.count() <= 9:
                 user = forms.cleaned_data["user"]
                 EventMember.objects.create(event=event, user=user)
-                return redirect("web:calender")
+                return redirect("calender")
             else:
                 print("--------------User limit exceed!-----------------")
     context = {"form": forms}
@@ -279,7 +295,7 @@ def add_eventmember(request, event_id):
             if member.count() <= 9:
                 user = forms.cleaned_data["user"]
                 EventMember.objects.create(event=event, user=user)
-                return redirect("web:calender")
+                return redirect("calender")
             else:
                 print("--------------User limit exceed!-----------------")
     context = {"form": forms}
@@ -288,4 +304,4 @@ def add_eventmember(request, event_id):
 class EventMemberDeleteView(generic.DeleteView):
     model = EventMember
     template_name = "event_delete.html"
-    success_url = reverse_lazy("web:calender")
+    success_url = reverse_lazy("calender")

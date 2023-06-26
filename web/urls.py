@@ -13,7 +13,7 @@ urlpatterns = [
     path('client/', views.cliente, name='cliente'),
     path('employee/', views.empleado, name='empleado'),
     path('calendar/', views.agenda, name='agenda'),
-    path('viewOrden/', views.recepcionOrden, name='recepcionOrden'),
+    path('viewOrden/<int:pk>', views.recepcionOrden, name='recepcionOrden'),
     path('listCalendar/', views.listaCalendario, name='listaCalendario'),
     path('guardar_observacion/', views.guardar_observacion, name='guardar_observacion'),
     path('calender/', views.CalendarViewNew.as_view(), name='calender'),
@@ -26,7 +26,7 @@ urlpatterns = [
     path(
         "add_eventmember/<int:event_id>", views.add_eventmember, name="add_eventmember"
     ),
-    path(
+    path( 
         "event/<int:pk>/remove",
         views.EventMemberDeleteView.as_view(),
         name="remove_event",
